@@ -1,0 +1,8 @@
+.rollup.cache
+node_modules/
+types
+
+.editorconfig
+index.js
+nodemon.json
+test.ts

@@ -1,0 +1,40 @@
+{
+  "name": "zaff",
+  "author": {
+    "name": "KazariEX",
+    "url": "https://bikariarchive.xyz"
+  },
+  "description": "处理Arcaea谱面文件用模块",
+  "keywords": [
+    "arcaea",
+    "aff"
+  ],
+  "version": "1.0.0",
+  "license": "ISC",
+  "homepage": "https://github.com/MysteryBao37/zaff",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MysteryBao37/zaff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MysteryBao37/zaff/issues"
+  },
+  "type": "module",
+  "main": "index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "index.js",
+    "/types"
+  ],
+  "scripts": {
+    "rollup": "npx rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/node": "^20.4.1",
+    "rollup": "^3.26.2",
+    "tslib": "^2.6.0"
+  }
+}
