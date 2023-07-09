@@ -20,6 +20,12 @@ abstract class Note
         return this;
     }
 
+    speedAs(rate: number): this
+    {
+        this.time = Math.round(this.time / rate);
+        return this;
+    }
+
     abstract clone(): Note;
     abstract mirror(): this;
     abstract toString(): string;

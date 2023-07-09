@@ -63,7 +63,7 @@ declare global
     }
 }
 
-String.prototype.arg = function(...list)
+String.prototype.arg = function(...list: Array<string>)
 {
     let str = this.valueOf();
     list.forEach((item, index) => {

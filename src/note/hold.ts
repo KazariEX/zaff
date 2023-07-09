@@ -28,7 +28,7 @@ class Hold extends Tap
 
     moveBy(t: number): this
     {
-        this.time += t;
+        super.moveBy(t);
         this.timeEnd += t;
         return this;
     }
@@ -36,7 +36,14 @@ class Hold extends Tap
     moveTo(t: number): this
     {
         this.timeEnd = t + this.timeEnd - this.time;
-        this.time = t;
+        super.moveTo(t);
+        return this;
+    }
+
+    speedAs(rate: number): this
+    {
+        super.speedAs(rate);
+        this.timeEnd = Math.round(this.timeEnd / rate);
         return this;
     }
 

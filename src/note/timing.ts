@@ -30,6 +30,13 @@ class Timing extends Note
         return this;
     }
 
+    speedAs(rate: number): this
+    {
+        super.speedAs(rate);
+        this.bpm *= rate;
+        return this;
+    }
+
     toString(): string
     {
         return "timing({1},{2},{3});".arg(

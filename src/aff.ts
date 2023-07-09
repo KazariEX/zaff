@@ -74,7 +74,7 @@ class Aff
     // 谱面镜像
     mirror(): this
     {
-        [...this].forEach((tg: TimingGroup) => tg.mirror());
+        [...this].forEach(tg => tg.mirror());
         return this;
     }
 
@@ -88,8 +88,17 @@ class Aff
     // 谱面排序
     sort(): this
     {
-        [...this].forEach((tg: TimingGroup) => {
+        [...this].forEach(tg => {
             tg.sort((a: Note, b: Note) => a.time - b.time);
+        });
+        return this;
+    }
+
+    // 谱面变速
+    speedAs(rate: number): this
+    {
+        [...this].forEach(tg => {
+            tg.speedAs(rate);
         });
         return this;
     }

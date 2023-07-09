@@ -53,6 +53,23 @@ class Arc extends Hold
         };
     }
 
+    clone(): Arc
+    {
+        return new Arc({
+            time: this.time,
+            timeEnd: this.timeEnd,
+            x1: this.x1,
+            x2: this.x2,
+            easing: this.easing,
+            y1: this.y1,
+            y2: this.y2,
+            color: this.color,
+            hitsound: this.hitsound,
+            skyline: this.skyline,
+            arctap: Array.from(this.arctap)
+        });
+    }
+
     cut(count: number): TimingGroup
     {
         const tg = new TimingGroup();
@@ -95,27 +112,19 @@ class Arc extends Hold
         return tg;
     }
 
-    clone(): Arc
-    {
-        return new Arc({
-            time: this.time,
-            timeEnd: this.timeEnd,
-            x1: this.x1,
-            x2: this.x2,
-            easing: this.easing,
-            y1: this.y1,
-            y2: this.y2,
-            color: this.color,
-            hitsound: this.hitsound,
-            skyline: this.skyline,
-            arctap: Array.from(this.arctap)
-        });
-    }
-    
     mirror(): this
     {
         this.x1 = 0.5 - this.x1;
         this.x2 = 0.5 - this.x2;
+        return this;
+    }
+
+    speedAs(rate: number): this
+    {
+        super.speedAs(rate);
+        for (let i = 0; i < this.arctap.length; i++) {
+            this.arctap[i] = Math.round(this.arctap[i] / rate);
+        }
         return this;
     }
 

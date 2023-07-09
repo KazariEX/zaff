@@ -13,15 +13,21 @@ class TimingGroup extends Array<Note>
         this.attributes = attr;
     }
 
+    mirror(): this
+    {
+        this.forEach((note: Note) => note.mirror());
+        return this;
+    }
+
     moveBy(t: number): this
     {
         this.forEach((note: Note) => note.moveBy(t));
         return this;
     }
 
-    mirror(): this
+    speedAs(rate: number): this
     {
-        this.forEach((note: Note) => note.mirror());
+        this.forEach(note => note.speedAs(rate));
         return this;
     }
 
