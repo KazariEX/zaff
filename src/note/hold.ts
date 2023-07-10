@@ -8,20 +8,26 @@ class Hold extends Tap
         time = 0,
         timeEnd = 0,
         track = 0
-    } = {}) {
-        super();
-        this.time = time;
+    }: HoldOptions = {}) {
+        super({ time });
         this.timeEnd = timeEnd;
         this.track = track;
     }
 
-    clone(): Hold
+    clone({
+        time = this.time,
+        timeEnd = this.timeEnd,
+        track = this.track
+    }: HoldOptions): Hold
     {
         return new Hold({
-            time: this.time,
-            timeEnd: this.timeEnd,
-            track: this.track
+            time, timeEnd, track
         });
+    }
+
+    get duration(): number
+    {
+        return this.timeEnd - this.time;
     }
 
     moveBy(t: number): this

@@ -1,5 +1,4 @@
 import Note from "./note.js";
-import { EasingType } from "../enum.js";
 
 class Camera extends Note
 {
@@ -20,11 +19,10 @@ class Camera extends Note
         xoyAngle = 0,
         yozAngle = 0,
         xozAngle = 0,
-        easing = EasingType.l,
+        easing = "l" as EasingType,
         duration = 0
-    } = {}) {
-        super();
-        this.time = time;
+    }: CameraOptions = {}) {
+        super({ time });
         this.x = x;
         this.y = y;
         this.z = z;
@@ -35,18 +33,20 @@ class Camera extends Note
         this.duration = duration;
     }
 
-    clone(): Camera
+    clone({
+        time = this.time,
+        x = this.x,
+        y = this.y,
+        z = this.z,
+        xoyAngle = this.xoyAngle,
+        yozAngle = this.yozAngle,
+        xozAngle = this.xozAngle,
+        easing = this.easing,
+        duration = this.duration
+    }: CameraOptions = {}): Camera
     {
         return new Camera({
-            time: this.time,
-            x: this.x,
-            y: this.y,
-            z: this.z,
-            xoyAngle: this.xoyAngle,
-            yozAngle: this.yozAngle,
-            xozAngle: this.xozAngle,
-            easing: this.easing,
-            duration: this.duration
+            time, x, y, z, xoyAngle, yozAngle, xozAngle, easing, duration
         });
     }
 

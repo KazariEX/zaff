@@ -14,8 +14,7 @@
   "homepage": "https://github.com/MysteryBao37/ZAff",
   "repository": {
     "type": "git",
-    "url": "git://github.com/MysteryBao37/ZAff.git",
-    "directory": ""
+    "url": "git://github.com/MysteryBao37/ZAff.git"
   },
   "bugs": {
     "url": "https://github.com/MysteryBao37/ZAff/issues"

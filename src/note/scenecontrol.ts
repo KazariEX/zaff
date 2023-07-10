@@ -11,21 +11,22 @@ class SceneControl extends Note
         type = "",
         param1 = 0,
         param2 = 0
-    } = {}) {
-        super();
-        this.time = time;
+    }: ScenecontrolOptions = {}) {
+        super({ time });
         this.type = type;
         this.param1 = param1;
         this.param2 = param2;
     }
 
-    clone(): SceneControl
+    clone({
+        time = this.time,
+        type = this.type,
+        param1 = this.param1,
+        param2 = this.param2
+    }: ScenecontrolOptions = {}): SceneControl
     {
         return new SceneControl({
-            time: this.time,
-            type: this.type,
-            param1: this.param1,
-            param2: this.param2
+            time, type, param1, param2
         });
     }
 

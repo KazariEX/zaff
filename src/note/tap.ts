@@ -7,17 +7,18 @@ class Tap extends Note
     constructor({
         time = 0,
         track = 0
-    } = {}) {
-        super();
-        this.time = time;
+    }: TapOptions = {}) {
+        super({ time });
         this.track = track;
     }
 
-    clone(): Tap
+    clone({
+        time = this.time,
+        track = this.track
+    }: TapOptions = {}): Tap
     {
         return new Tap({
-            time: this.time,
-            track: this.track
+            time, track
         });
     }
 

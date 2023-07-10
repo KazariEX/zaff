@@ -4,7 +4,7 @@ abstract class Note
 
     constructor({
         time = 0
-    } = {}) {
+    }: NoteOptions = {}) {
         this.time = time;
     }
 
@@ -26,7 +26,7 @@ abstract class Note
         return this;
     }
 
-    abstract clone(): Note;
+    abstract clone(options?: NoteOptions): Note;
     abstract mirror(): this;
     abstract toString(): string;
 }

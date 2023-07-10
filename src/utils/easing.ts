@@ -1,20 +1,14 @@
-import { EasingType } from "../enum.js";
-
-type EasingFunction = {
-    (percent: number): number
-};
-
 function linear(percent: number): number
 {
     return percent;
 }
 
-function sineIn(percent: number): number
+function sin(percent: number): number
 {
     return Math.sin(percent * Math.PI / 2);
 }
 
-function sineOut(percent: number): number
+function cos(percent: number): number
 {
     return 1 - Math.cos(percent * Math.PI / 2);
 }
@@ -86,14 +80,14 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
 
 function getCurveByEasing(e: EasingType): EasingFunction
 {
-    if (e === EasingType.b) {
+    if (e === "b") {
         return bezier;
     }
-    else if (e === EasingType.si) {
-        return sineIn;
+    else if (e === "si") {
+        return sin;
     }
-    else if (e === EasingType.so) {
-        return sineOut;
+    else if (e === "so") {
+        return cos;
     }
     else {
         return linear;
@@ -105,22 +99,22 @@ function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction
     let cx = linear;
     let cy = linear;
 
-    if (e === EasingType.b) {
+    if (e === "b") {
         cx = bezier;
     }
     else {
-        if (e === EasingType.si || e === EasingType.sisi || e === EasingType.siso) {
-            cx = sineIn;
+        if (e === "si" || e === "sisi" || e === "siso") {
+            cx = sin;
         }
-        else if (e === EasingType.so || e === EasingType.sosi || e === EasingType.soso) {
-            cx = sineOut;
+        else if (e === "so" || e === "sosi" || e === "soso") {
+            cx = cos;
         }
 
-        if (e === EasingType.sisi || e === EasingType.sosi) {
-            cy = sineIn;
+        if (e === "sisi" || e === "sosi") {
+            cy = sin;
         }
-        else if (e === EasingType.siso || e === EasingType.soso) {
-            cy = sineOut;
+        else if (e === "siso" || e === "soso") {
+            cy = cos;
         }
     }
 
@@ -129,8 +123,8 @@ function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction
 
 export {
     linear,
-    sineIn,
-    sineOut,
+    sin,
+    cos,
     bezier,
     createBezier,
     getCurveByEasing,

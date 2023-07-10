@@ -74,7 +74,7 @@ fs.writeFileSync("3.aff", str);
 
 ## 元素类（Note）
 
-ZAff 使用类似 `Aff.tap(0, 1)` 的代码模式对 Note 进行实例化，返回一个 Note 对象，它的传参等同于谱面文件中描述 Note 的语句。另外，也可以使用配置对象来初始化 Note，例如：
+ZAff 使用类似 `Aff.tap(0, 1)` 的代码风格对 Note 进行实例化，返回一个 Note 对象，它的传参等同于谱面文件中描述 Note 的语句。另外，也可以使用配置对象来初始化 Note，例如：
 
 ```javascript
 Aff.arc({
@@ -216,7 +216,7 @@ while (aff.length) {
 
 传入的第一个 TimingGroup 将作为 `.aff` 文件的顶层输出，即 `Aff[0]`。
 
-Aff 上同样有一些对内部 Note 进行批量操作的方法，如：
+Aff 上有一些对内部 Note 进行批量操作的方法，如：
 
 ```javascript
 aff.mirror();      // 谱面镜像
@@ -236,7 +236,7 @@ aff.speedAs(1.5);  // 谱面1.5倍变速
 
 ### TimingGroup
 
-TimingGroup 继承自 Array，可以使用所有原生 Array 对象的方法，像操纵 js 原生数组那样向其中添加 Note：
+TimingGroup 继承自 Array，可以使用所有原生 Array 对象的方法，像操作 js 原生数组那样向其中添加 Note：
 
 ```javascript
 // 第二个参数可传入由特殊标识字符串构成的数组
