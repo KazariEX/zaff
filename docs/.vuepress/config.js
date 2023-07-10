@@ -17,12 +17,20 @@ module.exports = {
             {
                 title: "快速开始",
                 path: "/quick/",
+                collapsable: false,
                 sidebarDepth: 3,
                 children: [
                     "/quick/",
                     "/quick/download",
-                    "/quick/base",
-                    "/quick/easing"
+                    "/quick/base"
+                ]
+            },
+            {
+                title: "进阶",
+                collapsable: false,
+                sidebarDepth: 3,
+                children: [
+                    "/advance/easing"
                 ]
             }
         ]
