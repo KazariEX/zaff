@@ -1,5 +1,5 @@
 import Note from "./note.js";
-import { Easing } from "../enum.js";
+import { EasingType } from "../enum.js";
 
 class Camera extends Note
 {
@@ -9,7 +9,7 @@ class Camera extends Note
     xoyAngle: number;
     yozAngle: number;
     xozAngle: number;
-    easing: Easing;
+    easing: EasingType;
     duration: number;
 
     constructor({
@@ -20,7 +20,7 @@ class Camera extends Note
         xoyAngle = 0,
         yozAngle = 0,
         xozAngle = 0,
-        easing = Easing.l,
+        easing = EasingType.l,
         duration = 0
     } = {}) {
         super();

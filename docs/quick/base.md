@@ -41,6 +41,37 @@ arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(50
 
 我们得到了一张完整的谱面。
 
+## 从文件读取
+
+Aff 上挂载了 `parse` 和 `stringify` 两个方法，分别用于从字符串中解析谱面或生成字符串：
+
+```javascript
+const aff = Aff.parse(`
+AudioOffset:0
+-
+timing(0,128.00,4.00);
+(0,1);
+hold(0,250,4);
+arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(500)];
+`);
+
+const str = aff.stringify();
+```
+
+如果是 Node.js 环境，则可以从文件中读取或导出：
+
+```javascript
+import * as fs from "fs";
+
+const file = fs.readFileSync("2.aff");
+const aff = Aff.parse(file.toString());
+
+/* 一些对谱面的操作 */
+
+const str = aff.stringify();
+fs.writeFileSync("3.aff", str);
+```
+
 ## 元素类（Note）
 
 ZAff 使用类似 `Aff.tap(0, 1)` 的代码模式对 Note 进行实例化，返回一个 Note 对象，它的传参等同于谱面文件中描述 Note 的语句。另外，也可以使用配置对象来初始化 Note，例如：
@@ -248,36 +279,4 @@ console.log(tg.toString());
 tg.mirror();     // 整体镜像
 tg.moveBy(500);  // 整体偏移500ms
 tg.speedAs(1.5); // 整体1.5倍变速
-```
-
-
-## 从文件读取
-
-Aff 上挂载了 `parse` 和 `stringify` 两个方法，分别用于从字符串中解析谱面或生成字符串：
-
-```javascript
-const aff = Aff.parse(`
-AudioOffset:0
--
-timing(0,128.00,4.00);
-(0,1);
-hold(0,250,4);
-arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(500)];
-`);
-
-const str = aff.stringify();
-```
-
-如果是 Node.js 环境，则可以从文件中读取或导出：
-
-```javascript
-import * as fs from "fs";
-
-const file = fs.readFileSync("2.aff");
-const aff = Aff.parse(file.toString());
-
-/* 一些对谱面的操作 */
-
-const str = aff.stringify();
-fs.writeFileSync("3.aff", str);
 ```

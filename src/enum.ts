@@ -1,10 +1,10 @@
-enum Color {
+enum ColorType {
     blue = 0,
     red = 1,
     green = 2
 }
 
-enum Easing {
+enum EasingType {
     b = "b",
     l = "l",
     qi = "qi",
@@ -20,6 +20,6 @@ enum Easing {
 }
 
 export {
-    Color,
-    Easing
+    ColorType,
+    EasingType
 };

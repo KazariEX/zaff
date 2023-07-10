@@ -1,16 +1,16 @@
 import Hold from "./hold.js";
 import TimingGroup from "./timinggroup.js";
-import { Color, Easing } from "../enum.js";
+import { ColorType, EasingType } from "../enum.js";
 import { getComplexCurveByEasing } from "../utils/easing.js";
 
 class Arc extends Hold
 {
     x1: number;
     x2: number;
-    easing: Easing;
+    easing: EasingType;
     y1: number;
     y2: number;
-    color: Color;
+    color: ColorType;
     hitsound: string;
     skyline: boolean;
     arctap: Array<number>;
@@ -20,10 +20,10 @@ class Arc extends Hold
         timeEnd = 0,
         x1 = 0,
         x2 = 0,
-        easing = Easing.b,
+        easing = EasingType.b,
         y1 = 0,
         y2 = 0,
-        color = Color.blue,
+        color = ColorType.blue,
         hitsound = "none",
         skyline = false,
         arctap = Array()
@@ -70,7 +70,10 @@ class Arc extends Hold
         });
     }
 
-    cut(count: number): TimingGroup
+    cut(count: number, { cx, cy }: {
+        cx: EasingFunction,
+        cy: EasingFunction
+    }): TimingGroup
     {
         const tg = new TimingGroup();
         if (count === 1) {
@@ -78,7 +81,9 @@ class Arc extends Hold
         }
         else if (count > 1) {
             const st = (this.timeEnd - this.time) / count;
-            const [cx, cy] = getComplexCurveByEasing(this.easing);
+            const [_cx, _cy] = getComplexCurveByEasing(this.easing);
+            cx ??= _cx;
+            cy ??= _cy;
 
             const last = {
                 x: this.x1,
@@ -97,7 +102,7 @@ class Arc extends Hold
                     timeEnd: this.time + (i + 1) * st,
                     x1: last.x,
                     x2: next.x,
-                    easing: Easing.s,
+                    easing: EasingType.s,
                     y1: last.y,
                     y2: next.y,
                     color: this.color,

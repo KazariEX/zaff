@@ -21,7 +21,8 @@ module.exports = {
                 children: [
                     "/quick/",
                     "/quick/download",
-                    "/quick/base"
+                    "/quick/base",
+                    "/quick/easing"
                 ]
             }
         ]

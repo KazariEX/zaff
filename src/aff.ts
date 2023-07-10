@@ -1,5 +1,5 @@
 import { parseAll } from "./utils/parser.js";
-import { Color, Easing } from "./enum.js";
+import { ColorType, EasingType } from "./enum.js";
 import {
     Arc,
     Camera,
@@ -131,8 +131,8 @@ class Aff
 
     // 生成Arc
     static arc(options: ArcOptions): Arc
-    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: Easing, y1: number, y2: number, color: Color, hitsound: string, skyline: boolean, arctap: Array<number>): Arc
-    static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: Easing, y1?: number, y2?: number, color?: Color, hitsound?: string, skyline?: boolean, arctap?: Array<number>): Arc
+    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: ColorType, hitsound: string, skyline: boolean, arctap: Array<number>): Arc
+    static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: ColorType, hitsound?: string, skyline?: boolean, arctap?: Array<number>): Arc
     {
         if (typeof arguments[0] === "object") {
             return new Arc(timeOrOptions);
@@ -156,8 +156,8 @@ class Aff
 
     // 生成Camera
     static camera(options: CameraOptions): Camera
-    static camera(time: number, x: number, y: number, z: number, xoyAngle: number, yozAngle: number, xozAngle: number, easing: Easing, duration: number): Camera
-    static camera(timeOrOptions: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: Easing, duration?: number): Camera
+    static camera(time: number, x: number, y: number, z: number, xoyAngle: number, yozAngle: number, xozAngle: number, easing: EasingType, duration: number): Camera
+    static camera(timeOrOptions: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: EasingType, duration?: number): Camera
     {
         if (typeof arguments[0] === "object") {
             return new Camera(timeOrOptions);

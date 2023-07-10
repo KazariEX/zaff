@@ -1,5 +1,6 @@
 import Aff from "./aff.js";
-import { Color, Easing } from "./enum.js";
+import { ColorType, EasingType } from "./enum.js";
+import * as Easing from "./utils/easing.js";
 
 declare global
 {
@@ -13,10 +14,10 @@ declare global
         timeEnd: number,
         x1: number,
         x2: number,
-        easing: Easing,
+        easing: EasingType,
         y1: number,
         y2: number,
-        color: Color,
+        color: ColorType,
         hitsound: string,
         skyline: boolean,
         arctap: Array<number>
@@ -58,6 +59,10 @@ declare global
         beats: number
     }
 
+    interface EasingFunction {
+        (percent: number): number
+    }
+
     interface String {
         arg(...list: Array<any>): string;
     }
@@ -74,5 +79,6 @@ String.prototype.arg = function(...list: Array<string>)
 
 export default Aff;
 export {
-    Aff
+    Aff,
+    Easing
 };

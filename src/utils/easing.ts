@@ -1,4 +1,4 @@
-import { Easing } from "../enum.js";
+import { EasingType } from "../enum.js";
 
 type EasingFunction = {
     (percent: number): number
@@ -84,15 +84,15 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
     }
 }
 
-function getCurveByEasing(e: Easing): EasingFunction
+function getCurveByEasing(e: EasingType): EasingFunction
 {
-    if (e === Easing.b) {
+    if (e === EasingType.b) {
         return bezier;
     }
-    else if (e === Easing.si) {
+    else if (e === EasingType.si) {
         return sineIn;
     }
-    else if (e === Easing.so) {
+    else if (e === EasingType.so) {
         return sineOut;
     }
     else {
@@ -100,26 +100,26 @@ function getCurveByEasing(e: Easing): EasingFunction
     }
 }
 
-function getComplexCurveByEasing(e: Easing): [EasingFunction, EasingFunction]
+function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction]
 {
     let cx = linear;
     let cy = linear;
 
-    if (e === Easing.b) {
+    if (e === EasingType.b) {
         cx = bezier;
     }
     else {
-        if (e === Easing.si || e === Easing.sisi || e === Easing.siso) {
+        if (e === EasingType.si || e === EasingType.sisi || e === EasingType.siso) {
             cx = sineIn;
         }
-        else if (e === Easing.so || e === Easing.sosi || e === Easing.soso) {
+        else if (e === EasingType.so || e === EasingType.sosi || e === EasingType.soso) {
             cx = sineOut;
         }
 
-        if (e === Easing.sisi || e === Easing.sosi) {
+        if (e === EasingType.sisi || e === EasingType.sosi) {
             cy = sineIn;
         }
-        else if (e === Easing.siso || e === Easing.soso) {
+        else if (e === EasingType.siso || e === EasingType.soso) {
             cy = sineOut;
         }
     }

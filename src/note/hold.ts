@@ -1,6 +1,4 @@
-import Note from "./note.js";
 import Tap from "./tap.js";
-import TimingGroup from "./timinggroup.js";
 
 class Hold extends Tap
 {
