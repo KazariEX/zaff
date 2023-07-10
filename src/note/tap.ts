@@ -36,7 +36,7 @@ class Tap extends Note
     {
         return "({1},{2});".arg(
             Math.floor(this.time),
-            this.track
+            Number(this.track)
         );
     }
 }

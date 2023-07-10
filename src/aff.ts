@@ -104,7 +104,7 @@ class Aff
     }
 
     // 谱面对象序列化
-    serialize(): string
+    stringify(): string
     {
         const aff: Array<string> = [];
 

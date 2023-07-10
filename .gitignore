@@ -1,4 +1,5 @@
 .rollup.cache
+.temp
 node_modules/
 types
 

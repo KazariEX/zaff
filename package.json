@@ -27,7 +27,9 @@
     "/types"
   ],
   "scripts": {
-    "rollup": "npx rollup -c"
+    "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs --temp .temp",
+    "docs:build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs",
+    "rollup": "rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.0",
@@ -35,6 +37,7 @@
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/node": "^20.4.1",
     "rollup": "^3.26.2",
-    "tslib": "^2.6.0"
+    "tslib": "^2.6.0",
+    "vuepress": "^1.9.9"
   }
 }
