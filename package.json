@@ -4,7 +4,7 @@
     "name": "KazariEX",
     "url": "https://bikariarchive.xyz"
   },
-  "description": "ES module for processing arcaea file format",
+  "description": "ES module for processing arcaea format file",
   "keywords": [
     "arcaea",
     "aff"
@@ -14,7 +14,8 @@
   "homepage": "https://github.com/MysteryBao37/ZAff",
   "repository": {
     "type": "git",
-    "url": "git://github.com/MysteryBao37/ZAff.git"
+    "url": "git://github.com/MysteryBao37/ZAff.git",
+    "directory": ""
   },
   "bugs": {
     "url": "https://github.com/MysteryBao37/ZAff/issues"
@@ -23,8 +24,10 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
+    "/types",
     "index.js",
-    "/types"
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs --temp .temp",

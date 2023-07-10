@@ -1,5 +1,5 @@
 module.exports = {
-    base: "/",
+    base: "/ZAff/",
     title: "ZAff",
     description: "ES module for processing arcaea file format",
     themeConfig: {
@@ -25,8 +25,5 @@ module.exports = {
                 ]
             }
         ]
-    },
-    markdown: {
-        pageSuffix: ".a"
     }
 };
