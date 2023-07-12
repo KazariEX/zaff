@@ -196,7 +196,7 @@ class Aff
     // 生成Scenecontrol
     static scenecontrol(options: ScenecontrolOptions): SceneControl
     static scenecontrol(time: number, type: string, param1: number, param2: number): SceneControl
-    static scenecontrol(timeOrOptions: any, type?: string, param1?: number, param2?: number): SceneControl
+    static scenecontrol(timeOrOptions: any, sctype?: string, param1?: number, param2?: number): SceneControl
     {
         if (typeof arguments[0] === "object") {
             return new SceneControl(timeOrOptions);
@@ -204,7 +204,7 @@ class Aff
         else {
             return new SceneControl({
                 time: timeOrOptions,
-                type,
+                sctype,
                 param1,
                 param2
             });

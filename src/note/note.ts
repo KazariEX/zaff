@@ -26,6 +26,11 @@ abstract class Note
         return this;
     }
 
+    get type(): string
+    {
+        return this.constructor.name;
+    }
+
     abstract clone(options?: NoteOptions): Note;
     abstract mirror(): this;
     abstract toString(): string;

@@ -19,7 +19,7 @@ class Arc extends Hold
         timeEnd = 0,
         x1 = 0,
         x2 = 0,
-        easing = "b" as EasingType,
+        easing = "s" as EasingType,
         y1 = 0,
         y2 = 0,
         color = 0,

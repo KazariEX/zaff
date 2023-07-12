@@ -43,7 +43,7 @@ arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(50
 
 ## 从文件读取
 
-Aff 上挂载了 `parse` 和 `stringify` 两个方法，分别用于从字符串中解析谱面或生成字符串：
+Aff 上挂载了 `parse()` 和 `stringify()` 两个方法，分别用于从字符串中解析谱面或生成字符串：
 
 ```javascript
 const aff = Aff.parse(`
@@ -181,7 +181,7 @@ Camera 拥有以下属性：
 SceneControl 拥有以下属性：
 
 * `time` (ms)：时间点
-* `type` (preset)：场景控制类型
+* `sctype` (preset)：场景控制类型
 * `param1` (float)：参数 1
 * `param2` (int)：参数 2
 

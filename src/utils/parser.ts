@@ -136,7 +136,7 @@ function parseLine(noteStr: string): Note | TimingGroup
         else if (keyword === "scenecontrol") {
             return new SceneControl({
                 time: int(attr[0]),
-                type: attr[1],
+                sctype: attr[1],
                 param1: float(attr[2]),
                 param2: int(attr[3])
             });

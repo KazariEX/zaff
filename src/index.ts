@@ -1,5 +1,4 @@
 import Aff from "./aff.js";
-import Tap from "./note/tap.js";
 import * as Easing from "./utils/easing.js";
 
 declare global
@@ -49,7 +48,7 @@ declare global
 
     interface ScenecontrolOptions {
         time?: number,
-        type?: string,
+        sctype?: string,
         param1?: number,
         param2?: number
     }
