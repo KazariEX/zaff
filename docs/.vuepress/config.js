@@ -10,7 +10,7 @@ module.exports = {
             },
             {
                 text: "Github",
-                link: "https://github.com/MysteryBao37/ZAff"
+                link: "https://github.com/KazariEX/ZAff"
             }
         ],
         sidebar: [
