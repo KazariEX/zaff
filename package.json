@@ -9,7 +9,7 @@
     "arcaea",
     "aff"
   ],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "homepage": "https://github.com/MysteryBao37/ZAff",
   "repository": {
@@ -35,12 +35,12 @@
     "rollup": "rollup -c"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.0.0",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-typescript": "^11.1.2",
-    "@types/node": "^20.4.1",
-    "rollup": "^3.26.2",
-    "tslib": "^2.6.0",
-    "vuepress": "^1.9.9"
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.10.1",
+    "rollup": "^4.6.1",
+    "tslib": "^2.6.2",
+    "vuepress": "^1.9.10"
   }
 }
