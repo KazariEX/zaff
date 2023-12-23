@@ -10,7 +10,7 @@ cd docs/.vuepress/dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:MysteryBao37/ZAff.git master:doc-pages
+git push -f git@github.com:MysteryBao37/zaff.git master:doc-pages
 
 cd ../
 rm -rf dist

@@ -11,13 +11,13 @@
   ],
   "version": "1.0.2",
   "license": "MIT",
-  "homepage": "https://github.com/MysteryBao37/ZAff",
+  "homepage": "https://github.com/MysteryBao37/zaff",
   "repository": {
     "type": "git",
-    "url": "git://github.com/MysteryBao37/ZAff.git"
+    "url": "git://github.com/MysteryBao37/zaff.git"
   },
   "bugs": {
-    "url": "https://github.com/MysteryBao37/ZAff/issues"
+    "url": "https://github.com/MysteryBao37/zaff/issues"
   },
   "type": "module",
   "main": "index.js",

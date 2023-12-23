@@ -1,5 +1,5 @@
 module.exports = {
-    base: "/ZAff/",
+    base: "/zaff/",
     title: "ZAff",
     description: "ES module for processing arcaea file format",
     themeConfig: {
@@ -10,7 +10,7 @@ module.exports = {
             },
             {
                 text: "Github",
-                link: "https://github.com/KazariEX/ZAff"
+                link: "https://github.com/KazariEX/zaff"
             }
         ],
         sidebar: [
