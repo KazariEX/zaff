@@ -1,29 +1,26 @@
 {
   "name": "zaff",
-  "author": {
-    "name": "KazariEX",
-    "url": "https://bikariarchive.xyz"
-  },
+  "author": "KazariEX",
   "description": "ES module for processing arcaea format file",
   "keywords": [
     "arcaea",
     "aff"
   ],
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
-  "homepage": "https://github.com/MysteryBao37/zaff",
+  "homepage": "https://github.com/KazariEX/zaff",
   "repository": {
     "type": "git",
-    "url": "git://github.com/MysteryBao37/zaff.git"
+    "url": "https://github.com/KazariEX/zaff.git"
   },
   "bugs": {
-    "url": "https://github.com/MysteryBao37/zaff/issues"
+    "url": "https://github.com/KazariEX/zaff/issues"
   },
   "type": "module",
   "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
-    "/types",
+    "./types",
     "index.js",
     "LICENSE",
     "README.md"
@@ -32,15 +29,11 @@
     "docs:deploy": "sh deploy.sh",
     "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs --temp .temp",
     "docs:build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs",
-    "rollup": "rollup -c"
+    "build": "vite build -w"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@types/node": "^20.10.1",
-    "rollup": "^4.6.1",
-    "tslib": "^2.6.2",
+    "vite": "^5.0.12",
+    "vite-plugin-dts": "^3.7.2",
     "vuepress": "^1.9.10"
   }
 }

@@ -1,7 +1,3 @@
-.rollup.cache
-.temp
-node_modules/
+dist
+node_modules
 types
-
-index.js
-test.ts

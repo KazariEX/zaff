@@ -2,7 +2,7 @@
     "compilerOptions": {
         "alwaysStrict": true,
         "declaration": true,
-        "module": "ES6",
+        "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "outDir": "./types",
         "removeComments": false,
@@ -15,8 +15,5 @@
     ],
     "exclude": [
         "node_modules"
-    ],
-    "ts-node": {
-        "esm": true
-    }
+    ]
 }
