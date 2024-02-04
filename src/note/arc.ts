@@ -197,19 +197,29 @@ class Arc extends Hold
             }]`;
         }
 
-        return "arc({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}){11};".arg(
-            Math.floor(this.time),
-            Math.floor(this.timeEnd),
-            this.x1.toFixed(2),
-            this.x2.toFixed(2),
-            this.easing,
-            this.y1.toFixed(2),
-            this.y2.toFixed(2),
-            this.color,
-            this.hitsound,
-            this.skyline,
+        return `arc(${
+            Math.floor(this.time)
+        },${
+            Math.floor(this.timeEnd)
+        },${
+            this.x1.toFixed(2)
+        },${
+            this.x2.toFixed(2)
+        },${
+            this.easing
+        },${
+            this.y1.toFixed(2)
+        },${
+            this.y2.toFixed(2)
+        },${
+            this.color
+        },${
+            this.hitsound
+        },${
+            this.skyline
+        })${
             arctap
-        );
+        };`;
     }
 }
 

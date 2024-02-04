@@ -60,17 +60,25 @@ class Camera extends Note
 
     toString(): string
     {
-        return "camera({1},{2},{3},{4},{5},{6},{7},{8},{9});".arg(
-            Math.floor(this.time),
-            this.x.toFixed(2),
-            this.y.toFixed(2),
-            this.z.toFixed(2),
-            this.xoyAngle.toFixed(2),
-            this.yozAngle.toFixed(2),
-            this.xozAngle.toFixed(2),
-            this.easing,
+        return `camera(${
+            Math.floor(this.time)
+        },${
+            this.x.toFixed(2)
+        },${
+            this.y.toFixed(2)
+        },${
+            this.z.toFixed(2)
+        },${
+            this.xoyAngle.toFixed(2)
+        },${
+            this.yozAngle.toFixed(2)
+        },${
+            this.xozAngle.toFixed(2)
+        },${
+            this.easing
+        },${
             Math.floor(this.duration)
-        );
+        });`;
     }
 }
 

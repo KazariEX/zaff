@@ -67,19 +67,6 @@ declare global
     interface EasingFunction {
         (percent: number): number
     }
-
-    interface String {
-        arg(...list: Array<any>): string;
-    }
-}
-
-String.prototype.arg = function(...list: Array<string>)
-{
-    let str = this.valueOf();
-    list.forEach((item, index) => {
-        str = str.replaceAll(new RegExp(`\\{${index + 1}\\}`, "g"), item);
-    });
-    return str;
 }
 
 export default Aff;

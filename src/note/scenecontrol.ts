@@ -37,12 +37,15 @@ class SceneControl extends Note
 
     toString(): string
     {
-        return "scenecontrol({1},{2},{3},{4});".arg(
-            Math.floor(this.time),
-            this.sctype,
-            this.param1.toFixed(2),
+        return `scenecontrol(${
+            Math.floor(this.time)
+        },${
+            this.sctype
+        },${
+            this.param1.toFixed(2)
+        },${
             this.param2.toFixed(0)
-        );
+        });`;
     }
 }
 

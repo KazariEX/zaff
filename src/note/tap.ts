@@ -35,10 +35,11 @@ class Tap extends Note
 
     toString(): string
     {
-        return "({1},{2});".arg(
-            Math.floor(this.time),
-            Number(this.track)
-        );
+        return `(${
+            Math.floor(this.time)
+        },${
+            this.track
+        });`;
     }
 }
 

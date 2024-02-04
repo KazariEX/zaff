@@ -40,11 +40,13 @@ class Timing extends Note
 
     toString(): string
     {
-        return "timing({1},{2},{3});".arg(
-            Math.floor(this.time),
-            this.bpm.toFixed(2),
+        return `timing(${
+            Math.floor(this.time)
+        },${
+            this.bpm.toFixed(2)
+        },${
             this.beats.toFixed(2)
-        );
+        });`;
     }
 }
 

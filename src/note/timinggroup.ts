@@ -38,10 +38,11 @@ class TimingGroup extends Array<Note>
         });
 
         if (outer) {
-            return "timinggroup({1}){\n  {2}\n};".arg(
-                this.attributes.join("_"),
+            return `timinggroup(${
+                this.attributes.join("_")
+            }){\n  ${
                 inner.join("\n  ")
-            );
+            }\n};`;
         }
         else {
             return inner.join("\n");

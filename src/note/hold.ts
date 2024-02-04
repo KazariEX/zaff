@@ -53,11 +53,13 @@ class Hold extends Tap
 
     toString(): string
     {
-        return "hold({1},{2},{3});".arg(
-            Math.floor(this.time),
-            Math.floor(this.timeEnd),
+        return `hold(${
+            Math.floor(this.time)
+        },${
+            Math.floor(this.timeEnd)
+        },${
             this.track
-        );
+        });`;
     }
 }
 
