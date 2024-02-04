@@ -20,8 +20,8 @@
   "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
+    "./dist",
     "./types",
-    "index.js",
     "LICENSE",
     "README.md"
   ],
@@ -29,11 +29,13 @@
     "docs:deploy": "sh deploy.sh",
     "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs --temp .temp",
     "docs:build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs",
-    "build": "vite build -w"
+    "build": "vite build -w",
+    "test": "vitest"
   },
   "devDependencies": {
     "vite": "^5.0.12",
     "vite-plugin-dts": "^3.7.2",
+    "vitest": "^1.2.2",
     "vuepress": "^1.9.10"
   }
 }
