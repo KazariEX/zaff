@@ -24,7 +24,7 @@ declare global {
         color?: number,
         hitsound?: string,
         skyline?: boolean,
-        arctap?: Array<number>
+        arctap?: number[]
     }
 
     interface CameraOptions {

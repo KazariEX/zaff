@@ -89,7 +89,7 @@ function parseLine(noteStr: string) {
             });
         }
         else if (keyword === "arc") {
-            const arctap: Array<number> = [];
+            const arctap: number[] = [];
             const m: string = extra.match(/^\[(.*)\]$/)?.[1] ?? "";
             m.split(",").forEach((item) => {
                 const t = item.match(/arctap\(([0-9]*)\)/)?.[1];

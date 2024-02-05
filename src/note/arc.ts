@@ -11,7 +11,7 @@ class Arc extends Hold {
     color: number;
     hitsound: string;
     skyline: boolean;
-    arctap: Array<number>;
+    arctap: number[];
 
     constructor({
         time = 0,

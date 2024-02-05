@@ -1,9 +1,9 @@
 import Note from "./note.js";
 
 class TimingGroup extends Array<Note> {
-    attributes: Array<string>;
+    attributes: string[];
 
-    constructor(noteList: Array<Note> = [], attr: Array<string> = []) {
+    constructor(noteList: Note[] = [], attr: string[] = []) {
         super();
         noteList.forEach((note, index) => {
             this[index] = note;
