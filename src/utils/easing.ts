@@ -1,23 +1,19 @@
-function linear(percent: number): number
-{
+function linear(percent: number) {
     return percent;
 }
 
-function sin(percent: number): number
-{
+function sin(percent: number) {
     return Math.sin(percent * Math.PI / 2);
 }
 
-function cos(percent: number): number
-{
+function cos(percent: number) {
     return 1 - Math.cos(percent * Math.PI / 2);
 }
 
 const bezier = createBezier(1 / 3, 0, 2 / 3, 1);
 
 // https://github.com/WebKit/webkit/blob/main/Source/WebCore/platform/graphics/UnitBezier.h
-function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFunction
-{
+function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFunction {
     const cx = 3 * x1;
     const bx = 3 * (x2 - x1) - cx;
     const ax = 1 - cx - bx;
@@ -26,15 +22,13 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
     const by = 3 * (y2 - y1) - cy;
     const ay = 1 - cy - by;
 
-    return function (percent: number): number
-    {
+    return function(percent) {
         return sampleCurveY(solveCurveX(percent));
     };
 
-    function solveCurveX(x: number): number
-    {
+    function solveCurveX(x: number) {
         let t0 = 0;
-        let t1 = 1
+        let t1 = 1;
         let t2 = x;
         let x2 = 0;
         let d2 = 0;
@@ -44,7 +38,7 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
             if (Math.abs(x2) < 1e-6) return t2;
             d2 = sampleCurveDerivativeX(t2);
             if (Math.abs(d2) < 1e-6) break;
-            t2 = t2 - x2 / d2;
+            t2 -= x2 / d2;
         }
 
         t2 = x;
@@ -62,24 +56,20 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
         return t2;
     }
 
-    function sampleCurveX(t: number): number
-    {
+    function sampleCurveX(t: number) {
         return ((ax * t + bx) * t + cx) * t;
     }
 
-    function sampleCurveY(t: number): number
-    {
+    function sampleCurveY(t: number) {
         return ((ay * t + by) * t + cy) * t;
     }
 
-    function sampleCurveDerivativeX(t: number): number
-    {
+    function sampleCurveDerivativeX(t: number) {
         return (3.0 * ax * t + 2.0 * bx) * t + cx;
     }
 }
 
-function getCurveByEasing(e: EasingType): EasingFunction
-{
+function getCurveByEasing(e: EasingType): EasingFunction {
     if (e === "b") {
         return bezier;
     }
@@ -94,8 +84,7 @@ function getCurveByEasing(e: EasingType): EasingFunction
     }
 }
 
-function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction]
-{
+function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction] {
     let cx = linear;
     let cy = linear;
 

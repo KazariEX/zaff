@@ -18,8 +18,7 @@ const {
 
 const re_note = /^(?<keyword>[a-zA-Z]*)\s*\((?<args>.*?)\)\s*(?<extra>.*)\s*[;|\{]$/;
 
-function parseAll(affStr: string): Aff
-{
+function parseAll(affStr: string) {
     const affList = affStr.split("\n");
     const aff = new Aff();
     const tg1 = new TimingGroup();
@@ -65,8 +64,7 @@ function parseAll(affStr: string): Aff
     return aff;
 }
 
-function parseLine(noteStr: string): Note | TimingGroup
-{
+function parseLine(noteStr: string) {
     const match = re_note.exec(noteStr.trim());
     if (!match) {
         throw new AffParserError(noteStr);
@@ -93,7 +91,7 @@ function parseLine(noteStr: string): Note | TimingGroup
         else if (keyword === "arc") {
             const arctap: Array<number> = [];
             const m: string = extra.match(/^\[(.*)\]$/)?.[1] ?? "";
-            m.split(",").forEach(item => {
+            m.split(",").forEach((item) => {
                 const t = item.match(/arctap\(([0-9]*)\)/)?.[1];
                 if (t) {
                     arctap.push(int(t));
@@ -111,7 +109,7 @@ function parseLine(noteStr: string): Note | TimingGroup
                 hitsound: attr[8],
                 skyline: attr[9] === "true",
                 arctap: arctap
-            })
+            });
         }
         else if (keyword === "camera") {
             return new Camera({

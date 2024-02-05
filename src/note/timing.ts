@@ -1,7 +1,6 @@
 import Note from "./note.js";
 
-class Timing extends Note
-{
+class Timing extends Note {
     bpm: number;
     beats: number;
 
@@ -19,27 +18,23 @@ class Timing extends Note
         time = this.time,
         bpm = this.bpm,
         beats = this.beats
-    }: TimingOptions = {}): Timing
-    {
+    }: TimingOptions = {}) {
         return new Timing({
             time, bpm, beats
         });
     }
 
-    mirror(): this
-    {
+    mirror() {
         return this;
     }
 
-    speedAs(rate: number): this
-    {
+    speedAs(rate: number) {
         super.speedAs(rate);
         this.bpm *= rate;
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         return `timing(${
             Math.floor(this.time)
         },${

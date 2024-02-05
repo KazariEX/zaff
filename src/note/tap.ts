@@ -1,7 +1,6 @@
 import Note from "./note.js";
 
-class Tap extends Note
-{
+class Tap extends Note {
     track: number;
 
     constructor({
@@ -15,15 +14,13 @@ class Tap extends Note
     clone({
         time = this.time,
         track = this.track
-    }: TapOptions = {}): Tap
-    {
+    }: TapOptions = {}) {
         return new Tap({
             time, track
         });
     }
 
-    mirror(): this
-    {
+    mirror() {
         if (this.track % 1 === 0) {
             this.track = 5 - this.track;
         }
@@ -33,8 +30,7 @@ class Tap extends Note
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         return `(${
             Math.floor(this.time)
         },${

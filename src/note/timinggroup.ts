@@ -1,11 +1,9 @@
 import Note from "./note.js";
 
-class TimingGroup extends Array<Note>
-{
+class TimingGroup extends Array<Note> {
     attributes: Array<string>;
 
-    constructor(noteList: Array<Note> = [], attr: Array<string> = [])
-    {
+    constructor(noteList: Array<Note> = [], attr: Array<string> = []) {
         super();
         noteList.forEach((note, index) => {
             this[index] = note;
@@ -13,27 +11,23 @@ class TimingGroup extends Array<Note>
         this.attributes = attr;
     }
 
-    mirror(): this
-    {
+    mirror() {
         this.forEach((note: Note) => note.mirror());
         return this;
     }
 
-    moveBy(t: number): this
-    {
+    moveBy(t: number) {
         this.forEach((note: Note) => note.moveBy(t));
         return this;
     }
 
-    speedAs(rate: number): this
-    {
-        this.forEach(note => note.speedAs(rate));
+    speedAs(rate: number) {
+        this.forEach((note) => note.speedAs(rate));
         return this;
     }
 
-    toString(outer: boolean = false): string
-    {
-        const inner = [...this].map((note: Note) => {
+    toString(outer: boolean = false) {
+        const inner = this.map((note: Note) => {
             return note.toString();
         });
 

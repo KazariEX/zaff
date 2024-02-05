@@ -1,8 +1,7 @@
 import Aff from "./aff.js";
 import * as Easing from "./utils/easing.js";
 
-declare global
-{
+declare global {
     type EasingType = "b" | "l" | "qi" | "qo" | "reset" | "s" | "si" | "so" | "sisi" | "siso" | "sosi" | "soso";
 
     interface Point {

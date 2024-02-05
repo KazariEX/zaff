@@ -1,7 +1,6 @@
 import Note from "./note.js";
 
-class SceneControl extends Note
-{
+class SceneControl extends Note {
     sctype: string;
     param1: number;
     param2: number;
@@ -23,20 +22,17 @@ class SceneControl extends Note
         sctype = this.sctype,
         param1 = this.param1,
         param2 = this.param2
-    }: ScenecontrolOptions = {}): SceneControl
-    {
+    }: ScenecontrolOptions = {}) {
         return new SceneControl({
             time, sctype, param1, param2
         });
     }
 
-    mirror(): this
-    {
+    mirror() {
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         return `scenecontrol(${
             Math.floor(this.time)
         },${

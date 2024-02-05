@@ -1,5 +1,4 @@
-abstract class Note
-{
+abstract class Note {
     time: number;
 
     constructor({
@@ -8,26 +7,22 @@ abstract class Note
         this.time = time;
     }
 
-    moveBy(t: number): this
-    {
+    moveBy(t: number) {
         this.time += t;
         return this;
     }
 
-    moveTo(t: number): this
-    {
+    moveTo(t: number) {
         this.time = t;
         return this;
     }
 
-    speedAs(rate: number): this
-    {
+    speedAs(rate: number) {
         this.time = Math.round(this.time / rate);
         return this;
     }
 
-    get type(): string
-    {
+    get type() {
         return this.constructor.name;
     }
 

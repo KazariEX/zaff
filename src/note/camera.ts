@@ -1,7 +1,6 @@
 import Note from "./note.js";
 
-class Camera extends Note
-{
+class Camera extends Note {
     x: number;
     y: number;
     z: number;
@@ -43,23 +42,20 @@ class Camera extends Note
         xozAngle = this.xozAngle,
         easing = this.easing,
         duration = this.duration
-    }: CameraOptions = {}): Camera
-    {
+    }: CameraOptions = {}) {
         return new Camera({
             time, x, y, z, xoyAngle, yozAngle, xozAngle, easing, duration
         });
     }
 
-    mirror(): this
-    {
+    mirror() {
         this.x *= -1;
         this.xoyAngle *= -1;
         this.xozAngle *= -1;
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         return `camera(${
             Math.floor(this.time)
         },${

@@ -1,7 +1,6 @@
 import Tap from "./tap.js";
 
-class Hold extends Tap
-{
+class Hold extends Tap {
     timeEnd: number;
 
     constructor({
@@ -18,41 +17,35 @@ class Hold extends Tap
         time = this.time,
         timeEnd = this.timeEnd,
         track = this.track
-    }: HoldOptions): Hold
-    {
+    }: HoldOptions) {
         return new Hold({
             time, timeEnd, track
         });
     }
 
-    get duration(): number
-    {
+    get duration() {
         return this.timeEnd - this.time;
     }
 
-    moveBy(t: number): this
-    {
+    moveBy(t: number) {
         super.moveBy(t);
         this.timeEnd += t;
         return this;
     }
 
-    moveTo(t: number): this
-    {
+    moveTo(t: number) {
         this.timeEnd = t + this.timeEnd - this.time;
         super.moveTo(t);
         return this;
     }
 
-    speedAs(rate: number): this
-    {
+    speedAs(rate: number) {
         super.speedAs(rate);
         this.timeEnd = Math.round(this.timeEnd / rate);
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         return `hold(${
             Math.floor(this.time)
         },${

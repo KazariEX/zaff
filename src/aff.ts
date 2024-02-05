@@ -10,8 +10,7 @@ import {
     TimingGroup
 } from "./note/index.js";
 
-class Aff
-{
+class Aff {
     audioOffset: number;
     density: number;
     length: number = 0;
@@ -26,13 +25,11 @@ class Aff
     }
 
     // 迭代器
-    [Symbol.iterator]()
-    {
-        let that = this;
+    [Symbol.iterator]() {
+        const that = this;
         let index: number = 0;
         return {
-            next()
-            {
+            next() {
                 return {
                     value: that[index++],
                     done: index > that.length
@@ -42,19 +39,17 @@ class Aff
     }
 
     // 添加时间组
-    addTimingGroup(tg: TimingGroup): this
-    {
+    addTimingGroup(tg: TimingGroup) {
         this[this.length++] = tg;
         return this;
     }
 
     // 删除时间组
-    removeTimingGroup(index: number): TimingGroup | undefined
-    {
+    removeTimingGroup(index: number) {
         // 无时间组
         if (this.length === 0) {
             return void(0);
-        };
+        }
         // 负索引处理
         index %= this.length;
         if (index < 0) index += this.length;
@@ -71,40 +66,35 @@ class Aff
     }
 
     // 谱面镜像
-    mirror(): this
-    {
-        [...this].forEach(tg => tg.mirror());
+    mirror() {
+        [...this].forEach((tg) => tg.mirror());
         return this;
     }
 
     // 谱面偏移
-    offsetBy(offset: number): this
-    {
+    offsetBy(offset: number) {
         this.audioOffset += offset;
         return this;
     }
 
     // 谱面排序
-    sort(): this
-    {
-        [...this].forEach(tg => {
+    sort() {
+        [...this].forEach((tg) => {
             tg.sort((a: Note, b: Note) => a.time - b.time);
         });
         return this;
     }
 
     // 谱面变速
-    speedAs(rate: number): this
-    {
-        [...this].forEach(tg => {
+    speedAs(rate: number) {
+        [...this].forEach((tg) => {
             tg.speedAs(rate);
         });
         return this;
     }
 
     // 谱面对象序列化
-    stringify(): string
-    {
+    stringify() {
         const aff: Array<string> = [];
 
         // 文件头
@@ -123,16 +113,14 @@ class Aff
     }
 
     // 格式字符串解析
-    static parse(affStr: string): Aff
-    {
+    static parse(affStr: string) {
         return parseAll(affStr);
     }
 
     // 生成Arc
-    static arc(options: ArcOptions): Arc
-    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: number, hitsound: string, skyline: boolean, arctap: Array<number>): Arc
-    static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: number, hitsound?: string, skyline?: boolean, arctap?: Array<number>): Arc
-    {
+    static arc(options: ArcOptions): Arc;
+    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: number, hitsound: string, skyline: boolean, arctap: Array<number>): Arc;
+    static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: number, hitsound?: string, skyline?: boolean, arctap?: Array<number>) {
         if (typeof arguments[0] === "object") {
             return new Arc(timeOrOptions);
         }
@@ -154,10 +142,9 @@ class Aff
     }
 
     // 生成Camera
-    static camera(options: CameraOptions): Camera
-    static camera(time: number, x: number, y: number, z: number, xoyAngle: number, yozAngle: number, xozAngle: number, easing: EasingType, duration: number): Camera
-    static camera(timeOrOptions: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: EasingType, duration?: number): Camera
-    {
+    static camera(options: CameraOptions): Camera;
+    static camera(time: number, x: number, y: number, z: number, xoyAngle: number, yozAngle: number, xozAngle: number, easing: EasingType, duration: number): Camera;
+    static camera(timeOrOptions: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: EasingType, duration?: number) {
         if (typeof arguments[0] === "object") {
             return new Camera(timeOrOptions);
         }
@@ -177,10 +164,9 @@ class Aff
     }
 
     // 生成Hold
-    static hold(options: HoldOptions): Hold
-    static hold(time: number, timeEnd: number, track: number): Hold
-    static hold(timeOrOptions: any, timeEnd?: number, track?: number): Hold
-    {
+    static hold(options: HoldOptions): Hold;
+    static hold(time: number, timeEnd: number, track: number): Hold;
+    static hold(timeOrOptions: any, timeEnd?: number, track?: number) {
         if (typeof arguments[0] === "object") {
             return new Hold(timeOrOptions);
         }
@@ -194,10 +180,9 @@ class Aff
     }
 
     // 生成Scenecontrol
-    static scenecontrol(options: ScenecontrolOptions): SceneControl
-    static scenecontrol(time: number, type: string, param1: number, param2: number): SceneControl
-    static scenecontrol(timeOrOptions: any, sctype?: string, param1?: number, param2?: number): SceneControl
-    {
+    static scenecontrol(options: ScenecontrolOptions): SceneControl;
+    static scenecontrol(time: number, type: string, param1: number, param2: number): SceneControl;
+    static scenecontrol(timeOrOptions: any, sctype?: string, param1?: number, param2?: number) {
         if (typeof arguments[0] === "object") {
             return new SceneControl(timeOrOptions);
         }
@@ -212,10 +197,9 @@ class Aff
     }
 
     // 生成Tap
-    static tap(options: TapOptions): Tap
-    static tap(time: number, track: number): Tap
-    static tap(timeOrOptions: any, track?: number): Tap
-    {
+    static tap(options: TapOptions): Tap;
+    static tap(time: number, track: number): Tap;
+    static tap(timeOrOptions: any, track?: number) {
         if (typeof arguments[0] === "object") {
             return new Tap(timeOrOptions);
         }
@@ -228,10 +212,9 @@ class Aff
     }
 
     // 生成Timing
-    static timing(options: TimingOptions): Timing
-    static timing(time: number, bpm: number, beats: number): Timing
-    static timing(timeOrOptions: any, bpm?: number, beats?: number): Timing
-    {
+    static timing(options: TimingOptions): Timing;
+    static timing(time: number, bpm: number, beats: number): Timing;
+    static timing(timeOrOptions: any, bpm?: number, beats?: number) {
         if (typeof arguments[0] === "object") {
             return new Timing(timeOrOptions);
         }
@@ -245,8 +228,7 @@ class Aff
     }
 
     // 生成TimingGroup
-    static timinggroup(noteList: Array<Note> = [], options: Array<string> = []): TimingGroup
-    {
+    static timinggroup(noteList: Array<Note> = [], options: Array<string> = []) {
         return new TimingGroup(noteList, options);
     }
 }

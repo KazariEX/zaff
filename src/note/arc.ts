@@ -2,8 +2,7 @@ import Hold from "./hold.js";
 import TimingGroup from "./timinggroup.js";
 import { getComplexCurveByEasing } from "../utils/easing.js";
 
-class Arc extends Hold
-{
+class Arc extends Hold {
     x1: number;
     x2: number;
     easing: EasingType;
@@ -42,8 +41,7 @@ class Arc extends Hold
     at(t: number, { cx, cy }: {
         cx?: EasingFunction,
         cy?: EasingFunction
-    } = {}): Point
-    {
+    } = {}): Point {
         const percent = (t - this.time) / (this.timeEnd - this.time);
         const [_cx, _cy] = getComplexCurveByEasing(this.easing);
         cx ??= _cx;
@@ -67,8 +65,7 @@ class Arc extends Hold
         hitsound = this.hitsound,
         skyline = this.skyline,
         arctap = Array.from(this.arctap)
-    }: ArcOptions = this): Arc
-    {
+    }: ArcOptions = this) {
         return new Arc({
             time, timeEnd, x1, x2, easing, y1, y2, color, hitsound, skyline, arctap
         });
@@ -80,8 +77,7 @@ class Arc extends Hold
         ender?: boolean,
         cx?: EasingFunction,
         cy?: EasingFunction
-    } = {}): TimingGroup
-    {
+    } = {}) {
         const tg = new TimingGroup();
         if (count >= 1) {
             // 模板音弧
@@ -170,15 +166,13 @@ class Arc extends Hold
         return tg;
     }
 
-    mirror(): this
-    {
+    mirror() {
         this.x1 = 0.5 - this.x1;
         this.x2 = 0.5 - this.x2;
         return this;
     }
 
-    speedAs(rate: number): this
-    {
+    speedAs(rate: number) {
         super.speedAs(rate);
         for (let i = 0; i < this.arctap.length; i++) {
             this.arctap[i] = Math.round(this.arctap[i] / rate);
@@ -186,12 +180,11 @@ class Arc extends Hold
         return this;
     }
 
-    toString(): string
-    {
+    toString() {
         let arctap = "";
         if (this.arctap?.length > 0) {
             arctap = `[${
-                this.arctap.map(item => {
+                this.arctap.map((item) => {
                     return `arctap(${Math.floor(item)})`;
                 }).join(",")
             }]`;
