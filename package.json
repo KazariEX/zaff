@@ -26,21 +26,22 @@
   ],
   "exports": {
     ".": {
-        "import": "./dist/zaff.js",
-        "require": "./dist/zaff.cjs"
+      "import": "./dist/zaff.js",
+      "require": "./dist/zaff.cjs"
     }
   },
+  "packageManager": "pnpm@8.15.1",
   "scripts": {
     "docs:deploy": "sh deploy.sh",
-    "docs:dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs --temp .temp",
-    "docs:build": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "build": "vite build -w",
     "test": "vitest"
   },
   "devDependencies": {
     "vite": "^5.0.12",
     "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.2.2",
-    "vuepress": "^1.9.10"
+    "vitepress": "1.0.0-rc.41",
+    "vitest": "^1.2.2"
   }
 }

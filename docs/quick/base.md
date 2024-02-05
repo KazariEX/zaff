@@ -1,4 +1,8 @@
-# 基础
+---
+title: 基础
+---
+
+# {{ $frontmatter.title }}
 
 ZAff 使用 Aff 类来模拟一个 .aff 文件模块，并使用 Note 的衍生类等描述谱面的各种元素。首先，使用 ESModule 的语法引入：
 

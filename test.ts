@@ -1,1 +1,0 @@
-import { Aff, Easing } from "./src/index.js";
