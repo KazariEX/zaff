@@ -53,6 +53,13 @@ export default defineConfig({
         footer: {
             message: "MIT License",
             copyright: "Copyright © 2023-2024 KazariEX"
+        },
+        search: {
+            provider: "local"
+        },
+        outline: {
+            label: "页面导航",
+            level: "deep"
         }
     }
 });
