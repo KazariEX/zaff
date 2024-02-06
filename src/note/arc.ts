@@ -167,8 +167,10 @@ class Arc extends Hold {
     }
 
     mirror() {
-        this.x1 = 0.5 - this.x1;
-        this.x2 = 0.5 - this.x2;
+        this.x1 = 1 - this.x1;
+        this.x2 = 1 - this.x2;
+        const { color } = this;
+        this.color = color === 0 ? 1 : color === 1 ? 0 : color;
         return this;
     }
 
