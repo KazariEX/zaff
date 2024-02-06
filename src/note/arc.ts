@@ -24,7 +24,7 @@ class Arc extends Hold {
         color = 0,
         hitsound = "none",
         skyline = false,
-        arctap = Array()
+        arctap = []
     }: ArcOptions = {}) {
         super({ time, timeEnd });
         this.x1 = x1;

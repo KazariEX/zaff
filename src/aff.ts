@@ -119,7 +119,7 @@ class Aff {
 
     // 生成Arc
     static arc(options: ArcOptions): Arc;
-    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: number, hitsound: string, skyline: boolean, arctap: number[]): Arc;
+    static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: number, hitsound: string, skyline: boolean, arctap?: number[]): Arc;
     static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: number, hitsound?: string, skyline?: boolean, arctap?: number[]) {
         if (typeof arguments[0] === "object") {
             return new Arc(timeOrOptions);
