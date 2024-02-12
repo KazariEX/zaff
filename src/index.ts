@@ -1,5 +1,6 @@
 import Aff from "./aff.js";
 import * as Easing from "./utils/easing.js";
+import Stepper from "./utils/stepper.js";
 
 declare global {
     type EasingType = "b" | "l" | "qi" | "qo" | "reset" | "s" | "si" | "so" | "sisi" | "siso" | "sosi" | "soso";
@@ -71,5 +72,6 @@ declare global {
 export default Aff;
 export {
     Aff,
-    Easing
+    Easing,
+    Stepper
 };

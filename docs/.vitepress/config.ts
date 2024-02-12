@@ -46,6 +46,10 @@ export default defineConfig({
                     {
                         text: "缓动",
                         link: "/advance/easing"
+                    },
+                    {
+                        text: "步进",
+                        link: "/advance/stepper"
                     }
                 ]
             }
