@@ -4,7 +4,6 @@ export default defineConfig({
     title: "ZAff",
     description: "ES module for processing arcaea file format",
     lang: "zh-CN",
-    base: "/zaff/",
     themeConfig: {
         nav: [
             {
