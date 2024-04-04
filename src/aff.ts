@@ -2,6 +2,7 @@ import { parseAll } from "./utils/parser.js";
 import {
     Arc,
     Camera,
+    Flick,
     Hold,
     Note,
     SceneControl,
@@ -159,6 +160,24 @@ class Aff {
                 xozAngle,
                 easing,
                 duration
+            });
+        }
+    }
+
+    // 生成Flick
+    static flick(options: FlickOptions): Flick;
+    static flick(time: number, x: number, y: number, vx: number, vy: number): Flick;
+    static flick(timeOrOptions: any, x?: number, y?: number, vx?: number, vy?: number) {
+        if (typeof arguments[0] === "object") {
+            return new Flick(timeOrOptions);
+        }
+        else {
+            return new Flick({
+                time: timeOrOptions,
+                x,
+                y,
+                vx,
+                vy
             });
         }
     }

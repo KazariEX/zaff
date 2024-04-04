@@ -40,6 +40,14 @@ declare global {
         duration?: number
     }
 
+    interface FlickOptions {
+        time?: number,
+        x?: number,
+        y?: number,
+        vx?: number,
+        vy?: number
+    }
+
     interface HoldOptions {
         time?: number,
         timeEnd?: number,

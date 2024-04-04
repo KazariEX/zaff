@@ -162,9 +162,23 @@ const { x, y } = arc.at(375); // 获取在375ms处的坐标
 const tg = arc.cut(8);        // 进行8等分切片，返回一个TimingGroup
 ```
 
+### Flick
+
+Flick 拥有以下属性：
+
+* `time` (ms)：时间点
+* `x` (px)：初始横坐标
+* `y` (px)：初始纵坐标
+* `vx` (float)：滑动向量横向值
+* `vy` (float)：滑动向量纵向值
+
 ### Timing
 
-Timing 一共拥有三个属性 `time`，`bpm` 和 `beats`，支持的方法与 Tap 相同。
+Timing 拥有以下属性：
+
+* `time` (ms)：时间点
+* `bpm` (float)：节奏速度
+* `beats` (float)：每小节四分音符的数量
 
 ### Camera
 
