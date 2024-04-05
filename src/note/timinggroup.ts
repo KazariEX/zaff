@@ -3,12 +3,16 @@ import Note from "./note.js";
 class TimingGroup extends Array<Note> {
     attributes: string[];
 
-    constructor(noteList: Note[] = [], attr: string[] = []) {
+    constructor(noteList: Note[] = [], attrs: string[] = []) {
+        if (typeof arguments[0] === "number") {
+            super(...arguments);
+        }
+        else {
         super();
-        noteList.forEach((note, index) => {
-            this[index] = note;
-        });
-        this.attributes = attr;
+            this.push(...noteList);
+            this.attributes = attrs;
+        }
+    }
     }
 
     mirror() {
