@@ -1,4 +1,4 @@
-import { parseAll } from "./utils/parser.js";
+import { text2Aff } from "./ast";
 import {
     Arc,
     Camera,
@@ -9,9 +9,9 @@ import {
     Tap,
     Timing,
     TimingGroup
-} from "./note/index.js";
+} from "./note";
 
-class Aff {
+export class Aff {
     audioOffset: number;
     density: number;
     length: number = 0;
@@ -115,7 +115,7 @@ class Aff {
 
     // 格式字符串解析
     static parse(affStr: string) {
-        return parseAll(affStr);
+        return text2Aff(affStr);
     }
 
     // 生成Arc
@@ -251,5 +251,3 @@ class Aff {
         return new TimingGroup(noteList, options);
     }
 }
-
-export default Aff;

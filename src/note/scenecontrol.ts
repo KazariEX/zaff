@@ -1,4 +1,4 @@
-import Note from "./note.js";
+import Note from "./note";
 
 class SceneControl extends Note {
     sctype: string;

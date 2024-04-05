@@ -1,4 +1,4 @@
-import Tap from "./tap.js";
+import Tap from "./tap";
 
 class Hold extends Tap {
     timeEnd: number;

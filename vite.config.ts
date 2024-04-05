@@ -11,6 +11,9 @@ export default defineConfig({
                 "es",
                 "cjs"
             ]
+        },
+        rollupOptions: {
+            external: ["chevrotain"]
         }
     },
     plugins: [

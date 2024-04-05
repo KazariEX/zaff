@@ -7,6 +7,10 @@ abstract class Note {
         this.time = time;
     }
 
+    mirror() {
+        return this;
+    }
+
     moveBy(t: number) {
         this.time += t;
         return this;
@@ -22,12 +26,11 @@ abstract class Note {
         return this;
     }
 
-    get type() {
-        return this.constructor.name;
+    get kind() {
+        return this.constructor.name.toLowerCase();
     }
 
     abstract clone(options?: NoteOptions): Note;
-    abstract mirror(): this;
     abstract toString(): string;
 }
 

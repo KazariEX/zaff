@@ -1,6 +1,6 @@
-import Aff from "./aff.js";
-import * as Easing from "./utils/easing.js";
-import Stepper from "./utils/stepper.js";
+export { Aff, Aff as default } from "./aff";
+export * as Easing from "./utils/easing";
+export { Stepper } from "./utils/stepper";
 
 declare global {
     type EasingType = "b" | "l" | "qi" | "qo" | "reset" | "s" | "si" | "so" | "sisi" | "siso" | "sosi" | "soso";
@@ -26,6 +26,10 @@ declare global {
         hitsound?: string,
         skyline?: boolean,
         arctap?: number[]
+    }
+
+    interface ArctapOptions {
+        time?: number
     }
 
     interface CameraOptions {
@@ -76,10 +80,3 @@ declare global {
         (percent: number): number
     }
 }
-
-export default Aff;
-export {
-    Aff,
-    Easing,
-    Stepper
-};

@@ -1,4 +1,4 @@
-import Note from "./note.js";
+import Note from "./note";
 
 class Camera extends Note {
     x: number;

@@ -1,6 +1,6 @@
-import Timing from "../note/timing.js";
+import Timing from "../note/timing";
 
-class Stepper {
+export class Stepper {
     time: number;
     bpm: number;
     beats: number;
@@ -35,5 +35,3 @@ class Stepper {
         return time;
     }
 }
-
-export default Stepper;

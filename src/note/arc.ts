@@ -1,6 +1,6 @@
-import Hold from "./hold.js";
-import TimingGroup from "./timinggroup.js";
-import { getComplexCurveByEasing } from "../utils/easing.js";
+import Hold from "./hold";
+import TimingGroup from "./timinggroup";
+import { getComplexCurveByEasing } from "../utils/easing";
 
 class Arc extends Hold {
     x1: number;

@@ -1,19 +1,14 @@
 {
-    "compilerOptions": {
-        "alwaysStrict": true,
-        "declaration": true,
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "outDir": "./types",
-        "removeComments": false,
-        "sourceMap": false,
-        "strict": true,
-        "target": "ESNext"
-    },
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "target": "ESNext"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

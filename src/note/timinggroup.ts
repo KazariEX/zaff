@@ -1,18 +1,21 @@
-import Note from "./note.js";
+import Note from "./note";
 
 class TimingGroup extends Array<Note> {
-    attributes: string[];
-
-    constructor(noteList: Note[] = [], attrs: string[] = []) {
+    constructor(
+        noteList: Note[] = [],
+        public attributes: string[] = []
+    ) {
         if (typeof arguments[0] === "number") {
             super(...arguments);
         }
         else {
-        super();
+            super();
             this.push(...noteList);
-            this.attributes = attrs;
         }
     }
+
+    get kind() {
+        return this.constructor.name.toLowerCase();
     }
 
     mirror() {
