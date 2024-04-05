@@ -201,14 +201,14 @@ export class Aff {
     // 生成Scenecontrol
     static scenecontrol(options: ScenecontrolOptions): SceneControl;
     static scenecontrol(time: number, type: string, param1: number, param2: number): SceneControl;
-    static scenecontrol(timeOrOptions: any, sctype?: string, param1?: number, param2?: number) {
+    static scenecontrol(timeOrOptions: any, type?: string, param1?: number, param2?: number) {
         if (typeof arguments[0] === "object") {
             return new SceneControl(timeOrOptions);
         }
         else {
             return new SceneControl({
                 time: timeOrOptions,
-                sctype,
+                type,
                 param1,
                 param2
             });

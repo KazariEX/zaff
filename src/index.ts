@@ -60,7 +60,7 @@ declare global {
 
     interface ScenecontrolOptions {
         time?: number,
-        sctype?: string,
+        type?: string,
         param1?: number,
         param2?: number
     }

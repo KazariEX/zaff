@@ -158,7 +158,7 @@ const factory = createFactory({
         paramsCount: 4,
         fieldTypes: {
             time: ["int"],
-            sctype: ["word"],
+            type: ["word"],
             param1: ["float"],
             param2: ["int"]
         },
@@ -185,10 +185,10 @@ const factory = createFactory({
         paramsCount: 1,
         hasChildren: true,
         fieldTypes: {
-            sctype: ["word"]
+            attrs: ["word"]
         },
         return: (options, connects, children = []) => {
-            const attrs = options.sctype.split("_");
+            const attrs = options.attrs.split("_");
             return new TimingGroup(children, attrs);
         }
     }

@@ -199,7 +199,7 @@ Camera 拥有以下属性：
 SceneControl 拥有以下属性：
 
 * `time` (ms)：时间点
-* `sctype` (preset)：场景控制类型
+* `type` (preset)：场景控制类型
 * `param1` (float)：参数 1
 * `param2` (int)：参数 2
 

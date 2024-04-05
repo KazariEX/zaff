@@ -1,30 +1,30 @@
 import Note from "./note";
 
 class SceneControl extends Note {
-    sctype: string;
+    type: string;
     param1: number;
     param2: number;
 
     constructor({
         time = 0,
-        sctype = "",
+        type = "",
         param1 = 0,
         param2 = 0
     }: ScenecontrolOptions = {}) {
         super({ time });
-        this.sctype = sctype;
+        this.type = type;
         this.param1 = param1;
         this.param2 = param2;
     }
 
     clone({
         time = this.time,
-        sctype = this.sctype,
+        type = this.type,
         param1 = this.param1,
         param2 = this.param2
     }: ScenecontrolOptions = {}) {
         return new SceneControl({
-            time, sctype, param1, param2
+            time, type, param1, param2
         });
     }
 
@@ -36,7 +36,7 @@ class SceneControl extends Note {
         return `scenecontrol(${
             Math.floor(this.time)
         },${
-            this.sctype
+            this.type
         },${
             this.param1.toFixed(2)
         },${
