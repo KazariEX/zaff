@@ -1,6 +1,6 @@
 {
   "name": "zaff",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "ES module for processing arcaea format file",
   "keywords": [
     "arcaea",
@@ -20,8 +20,10 @@
   ],
   "exports": {
     ".": {
+      "default": "./dist/zaff.js",
       "import": "./dist/zaff.js",
-      "require": "./dist/zaff.cjs"
+      "require": "./dist/zaff.cjs",
+      "types": "./types/index.d.ts"
     }
   },
   "packageManager": "pnpm@9.4.0",
