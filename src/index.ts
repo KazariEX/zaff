@@ -1,4 +1,5 @@
 export { Aff, Aff as default } from "./aff";
+export * from "./note";
 export * as Easing from "./utils/easing";
 export { Stepper } from "./utils/stepper";
 
