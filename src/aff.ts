@@ -1,4 +1,4 @@
-import { text2Aff } from "./ast";
+import { text2Aff, text2Note } from "./ast";
 import { Arc, Camera, Flick, Hold, type Note, SceneControl, Tap, Timing, TimingGroup } from "./note";
 
 export class Aff {
@@ -102,9 +102,14 @@ export class Aff {
         return aff.join("\n");
     }
 
-    // 格式字符串解析
+    // Aff 文本解析
     static parse(affStr: string) {
         return text2Aff(affStr);
+    }
+
+    // Note 文本解析
+    static parseInline<T extends Note | TimingGroup>(noteStr: string) {
+        return text2Note<T>(noteStr);
     }
 
     // 生成Arc
