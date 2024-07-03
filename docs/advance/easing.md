@@ -6,7 +6,7 @@ title: 缓动
 
 缓动是制作动画、提升谱面视觉效果的核心之一，ZAff 提供了一系列基本缓动函数，以及创建自定义缓动曲线的方法。按照以下方式导入：
 
-```javascript
+```ts
 import { Easing } from "zaff";
 ```
 
@@ -21,16 +21,15 @@ import { Easing } from "zaff";
 
 这些函数表示取值范围和值域均为 [0, 1] 的曲线，在音弧中表示 timing 和 x / y 坐标的对应关系。考察 `Arc.at()` 方法的实现：
 
-```javascript
-function at(t: number): Point
-{
-    const percent = (t - this.time) / (this.timeEnd - this.time);
-    const [cx, cy] = getComplexCurveByEasing(this.easing);
+```ts
+function at(t: number) {
+  const percent = (t - this.time) / (this.timeEnd - this.time);
+  const [cx, cy] = getComplexCurveByEasing(this.easing);
 
-    return {
-        x: this.x1 + cx(percent) * (this.x2 - this.x1),
-        y: this.y1 + cy(percent) * (this.y2 - this.y1)
-    };
+  return {
+    x: this.x1 + cx(percent) * (this.x2 - this.x1),
+    y: this.y1 + cy(percent) * (this.y2 - this.y1)
+  };
 }
 ```
 
@@ -42,7 +41,7 @@ function at(t: number): Point
 
 游戏中的 `b` 类音弧，实际上是一条三阶贝塞尔曲线，它的两个控制点分别为 `(1/3, 0)` 和 `(2/3, 1)`。在 ZAff 中，`Easing` 对象提供了 `createBezier()` 方法，供我们创建自定义的缓动曲线。该方法默认起点和终点分别为 `(0, 0)` 和 `(1, 1)`，传入的四个参数分别为两个控制点的 xy 坐标。示例如下：
 
-```javascript
+```ts
 const curve = Easing.createBezier(0.11, 0.19, 0.23, 0.66);
 console.log(curve(0.5));
 // 0.6994330827275067
@@ -54,7 +53,7 @@ console.log(curve(0.5));
 
 `Arc.easing` 是一个字符串类型的属性，它的可选值与游戏内音弧的缓动类型相同。在 Easing 对象上的 `getComplexCurveByEasing()` 方法用于从原生缓动类型获取对应的曲线，观察下面这个例子：
 
-```javascript
+```ts
 const [cx, cy] = Easing.getComplexCurveByEasing("siso");
 
 console.log(cx === Easing.sin); // true
@@ -79,14 +78,14 @@ console.log(cy === Easing.cos); // true
 | cx    | EasingFunction | x 轴缓动曲线       |
 | cy    | EasingFunction | y 轴缓动曲线       |
 
-```javascript
+```ts
 const arc = Aff.arc(0, 2333, 0.00, 1.00, "s", 0.00, 1.00, 0, "none", false);
 const tg = arc.cut(9, {
-    start: 810,
-    end: 1919,
-    ender: true,
-    cx: Easing.sin,
-    cy: Easing.bezier
+  start: 810,
+  end: 1919,
+  ender: true,
+  cx: Easing.sin,
+  cy: Easing.bezier
 });
 ```
 

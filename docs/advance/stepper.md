@@ -6,7 +6,7 @@ title: 步进
 
 步进器用于按照指定的节奏模式生成时间片段。按照以下方式导入：
 
-```javascript
+```ts
 import { Stepper } from "zaff";
 ```
 
@@ -14,7 +14,7 @@ import { Stepper } from "zaff";
 
 初始化步进器时，既可以传入一个配置对象，也可以直接传入一个 Timing：
 
-```javascript
+```ts
 const stepper = new Stepper({
   time: 2333,
   bpm: 185,
@@ -27,7 +27,7 @@ const stepper = new Stepper(timing);
 
 在步进器上挂载了一个核心方法 ``generate()``，如果我们想生成 332 的节奏型，则可以这么做：
 
-```javascript
+```ts
 const it = stepper.generate([3, 3, 2], {
   noteValue: 8,
   timeEnd: 7777
@@ -38,7 +38,7 @@ const it = stepper.generate([3, 3, 2], {
 
 这个方法实际上是一个 Generator 函数，使用 ``for ... of ...`` 来运行返回的遍历器对象，便可以生成相应的时间片段了：
 
-```javascript
+```ts
 for (const time of it) {
   console.log(Math.floor(time));
 }
