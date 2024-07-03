@@ -1,17 +1,20 @@
-import Note from "./note";
+import type Note from "./note";
 
 class TimingGroup extends Array<Note> {
+    attributes: string[];
+
     constructor(
         noteList: Note[] = [],
-        public attributes: string[] = []
+        attributes: string[] = []
     ) {
-        if (typeof arguments[0] === "number") {
-            super(...arguments);
+        if (typeof noteList === "number") {
+            super(noteList);
         }
         else {
             super();
             this.push(...noteList);
         }
+        this.attributes = attributes;
     }
 
     get kind() {
@@ -19,12 +22,12 @@ class TimingGroup extends Array<Note> {
     }
 
     mirror() {
-        this.forEach((note: Note) => note.mirror());
+        this.forEach((note) => note.mirror());
         return this;
     }
 
     moveBy(t: number) {
-        this.forEach((note: Note) => note.moveBy(t));
+        this.forEach((note) => note.moveBy(t));
         return this;
     }
 
@@ -33,8 +36,8 @@ class TimingGroup extends Array<Note> {
         return this;
     }
 
-    toString(outer: boolean = false) {
-        const inner = this.map((note: Note) => {
+    toString(outer = false) {
+        const inner = this.map((note) => {
             return note.toString();
         });
 

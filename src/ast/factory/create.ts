@@ -1,22 +1,22 @@
-import type { CstChildrenDictionary, IToken, TokenType } from "chevrotain";
-import type { AFFError } from "./types";
-import { locationFromToken } from "./utils";
-import { Note, TimingGroup } from "../note";
+import type { IToken } from "chevrotain";
+import type { Note, TimingGroup } from "../../note";
+import { locationFromToken } from "../utils";
+import type { AFFError, ResolveCstNodes } from "../types";
 
 type Factory = Record<string, (
     errors: AFFError[],
-    ctx: CstChildrenDictionary,
+    ctx: ResolveCstNodes<"children" | "connects" | "params">,
     params: IToken[],
     connects: Note[],
     children: Note[]
-) => Note>;
+) => Note | TimingGroup | null>;
 
 type FactoryOptions = Record<string, {
     paramsCount: number;
     connectKinds?: string[];
     hasChildren?: boolean;
     fieldTypes: Record<string, string[]>;
-    return: (options, connects?: Note[], children?: Note[]) => Note | TimingGroup
+    return: (options: any, connects?: Note[], children?: Note[]) => Note | TimingGroup;
 }>;
 
 export function createFactory(options: FactoryOptions) {
@@ -40,29 +40,29 @@ export function createFactory(options: FactoryOptions) {
 }
 
 // 检测参数数量
-function checkParamsCount(errors: AFFError[], kind: string, ctx: CstChildrenDictionary, params: IToken[], count: number) {
-    return (count !== void(0) && params.length !== count) ? (
+function checkParamsCount(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"params">, params: IToken[], count: number) {
+    return (count !== void (0) && params.length !== count) ? (
         errors.push({
             message: `Note with type "${kind}" should have ${count} field(s) instead of ${params.length} field(s)`,
-            location: ctx.params[0].location
+            location: ctx.params[0].location!
         }), false
     ) : true;
 }
 
 // 检测连携物件
-function checkConnects(errors: AFFError[], kind: string, ctx: CstChildrenDictionary, connects: Note[], connectKinds: string[]) {
+function checkConnects(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"connects">, connects: Note[], connectKinds: string[]) {
     if (connects) {
         if (connectKinds.length === 0) {
             errors.push({
                 message: `Note with type "${kind}" should not have connected note(s)`,
-                location: ctx.connects[0].location
+                location: ctx.connects[0].location!
             });
             return false;
         }
         return connects.every((note) => ((!connectKinds.includes(note.kind)) ? (
             errors.push({
                 message: `Note with type "${kind}" should note have connected note with type "${note.kind}"`,
-                location: ctx.connects[0].location
+                location: ctx.connects[0].location!
             }), false
         ) : true));
     }
@@ -70,18 +70,18 @@ function checkConnects(errors: AFFError[], kind: string, ctx: CstChildrenDiction
 }
 
 // 检测子物件
-function checkChildren(errors: AFFError[], kind: string, ctx: CstChildrenDictionary, children: Note[], hasChildren: boolean) {
+function checkChildren(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"children">, children: Note[], hasChildren = false) {
     return (!hasChildren && children) ? (
         errors.push({
             message: `Note with type "${kind}" should not have child note(s)`,
-            location: ctx.children[0].location
+            location: ctx.children[0].location!
         }), false
     ) : true;
 }
 
-//处理参数
+// 处理参数
 function detectParams(errors: AFFError[], kind: string, params: IToken[], fieldTypes: Record<string, string[]>) {
-    const options = {};
+    const options: Record<string, any> = {};
     const entries = Object.entries(fieldTypes);
     for (let i = 0; i < entries.length; i++) {
         const [field, typeNames] = entries[i];
@@ -89,11 +89,7 @@ function detectParams(errors: AFFError[], kind: string, params: IToken[], fieldT
 
         const tokenType = param.tokenType;
         if (typeNames.includes(tokenType.name)) {
-            const value = param.image;
-            options[field] = {
-                int: Number.parseInt,
-                float: Number.parseFloat
-            }[tokenType.name]?.(value) ?? value;
+            options[field] = transforParamValue(tokenType.name, param.image);
         }
         else {
             errors.push({
@@ -104,4 +100,13 @@ function detectParams(errors: AFFError[], kind: string, params: IToken[], fieldT
         }
     }
     return options;
+}
+
+// 参数类型转换
+function transforParamValue(type: string, value: string) {
+    switch (type) {
+        case "int": return Number.parseInt(value);
+        case "float": return Number.parseFloat(value);
+        default: return value;
+    }
 }

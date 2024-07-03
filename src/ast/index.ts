@@ -1,5 +1,5 @@
+import type { Aff } from "../aff";
 import type { AFFError } from "./types";
-import { Aff } from "../aff";
 import { lexer } from "./lexer";
 import { parser } from "./parser";
 import { locationFromToken } from "./utils";
@@ -17,7 +17,7 @@ export function text2Aff(text: string): Aff {
             startLine: e.line,
             endLine: e.line,
             startColumn: e.column,
-            endColumn: e.column + e.length
+            endColumn: e.column! + e.length
         }
     })));
 

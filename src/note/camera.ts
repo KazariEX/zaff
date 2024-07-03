@@ -44,7 +44,15 @@ class Camera extends Note {
         duration = this.duration
     }: CameraOptions = {}) {
         return new Camera({
-            time, x, y, z, xoyAngle, yozAngle, xozAngle, easing, duration
+            time,
+            x,
+            y,
+            z,
+            xoyAngle,
+            yozAngle,
+            xozAngle,
+            easing,
+            duration
         });
     }
 

@@ -28,7 +28,11 @@ class Flick extends Note {
         vy = this.vy
     }: FlickOptions = {}) {
         return new Flick({
-            time, x, y, vx, vy
+            time,
+            x,
+            y,
+            vx,
+            vy
         });
     }
 

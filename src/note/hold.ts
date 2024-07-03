@@ -19,7 +19,9 @@ class Hold extends Tap {
         track = this.track
     }: HoldOptions = {}) {
         return new Hold({
-            time, timeEnd, track
+            time,
+            timeEnd,
+            track
         });
     }
 

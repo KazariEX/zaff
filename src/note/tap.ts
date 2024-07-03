@@ -16,7 +16,8 @@ class Tap extends Note {
         track = this.track
     }: TapOptions = {}) {
         return new Tap({
-            time, track
+            time,
+            track
         });
     }
 

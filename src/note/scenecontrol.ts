@@ -24,7 +24,10 @@ class SceneControl extends Note {
         param2 = this.param2
     }: ScenecontrolOptions = {}) {
         return new SceneControl({
-            time, type, param1, param2
+            time,
+            type,
+            param1,
+            param2
         });
     }
 

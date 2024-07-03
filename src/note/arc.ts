@@ -1,6 +1,6 @@
+import { getComplexCurveByEasing } from "../utils/easing";
 import Hold from "./hold";
 import TimingGroup from "./timinggroup";
-import { getComplexCurveByEasing } from "../utils/easing";
 
 class Arc extends Hold {
     x1: number;
@@ -39,9 +39,9 @@ class Arc extends Hold {
     }
 
     at(t: number, { cx, cy }: {
-        cx?: EasingFunction,
-        cy?: EasingFunction
-    } = {}): Point {
+        cx?: EasingFunction;
+        cy?: EasingFunction;
+    } = {}) {
         const percent = (t - this.time) / (this.timeEnd - this.time);
         const [_cx, _cy] = getComplexCurveByEasing(this.easing);
         cx ??= _cx;
@@ -65,18 +65,28 @@ class Arc extends Hold {
         hitsound = this.hitsound,
         skyline = this.skyline,
         arctap = Array.from(this.arctap)
-    }: ArcOptions = this) {
+    }: ArcOptions = {}) {
         return new Arc({
-            time, timeEnd, x1, x2, easing, y1, y2, color, hitsound, skyline, arctap
+            time,
+            timeEnd,
+            x1,
+            x2,
+            easing,
+            y1,
+            y2,
+            color,
+            hitsound,
+            skyline,
+            arctap
         });
     }
 
     cut(count: number, { start = this.time, end = this.timeEnd, ender = false, cx, cy }: {
-        start?: number,
-        end?: number,
-        ender?: boolean,
-        cx?: EasingFunction,
-        cy?: EasingFunction
+        start?: number;
+        end?: number;
+        ender?: boolean;
+        cx?: EasingFunction;
+        cy?: EasingFunction;
     } = {}) {
         const tg = new TimingGroup();
         if (count >= 1) {

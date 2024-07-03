@@ -20,12 +20,10 @@ class Timing extends Note {
         beats = this.beats
     }: TimingOptions = {}) {
         return new Timing({
-            time, bpm, beats
+            time,
+            bpm,
+            beats
         });
-    }
-
-    mirror() {
-        return this;
     }
 
     speedAs(rate: number) {

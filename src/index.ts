@@ -5,78 +5,73 @@ export { Stepper } from "./utils/stepper";
 declare global {
     type EasingType = "b" | "l" | "qi" | "qo" | "reset" | "s" | "si" | "so" | "sisi" | "siso" | "sosi" | "soso";
 
-    interface Point {
-        x: number,
-        y: number
-    }
-
     interface NoteOptions {
-        time?: number
+        time?: number;
     }
 
     interface ArcOptions {
-        time?: number,
-        timeEnd?: number,
-        x1?: number,
-        x2?: number,
-        easing?: EasingType,
-        y1?: number,
-        y2?: number,
-        color?: number,
-        hitsound?: string,
-        skyline?: boolean,
-        arctap?: number[]
+        time?: number;
+        timeEnd?: number;
+        x1?: number;
+        x2?: number;
+        easing?: EasingType;
+        y1?: number;
+        y2?: number;
+        color?: number;
+        hitsound?: string;
+        skyline?: boolean;
+        arctap?: number[];
     }
 
     interface ArctapOptions {
-        time?: number
+        time?: number;
     }
 
     interface CameraOptions {
-        time?: number,
-        x?: number,
-        y?: number,
-        z?: number,
-        xoyAngle?: number,
-        yozAngle?: number,
-        xozAngle?: number,
-        easing?: EasingType,
-        duration?: number
+        time?: number;
+        x?: number;
+        y?: number;
+        z?: number;
+        xoyAngle?: number;
+        yozAngle?: number;
+        xozAngle?: number;
+        easing?: EasingType;
+        duration?: number;
     }
 
     interface FlickOptions {
-        time?: number,
-        x?: number,
-        y?: number,
-        vx?: number,
-        vy?: number
+        time?: number;
+        x?: number;
+        y?: number;
+        vx?: number;
+        vy?: number;
     }
 
     interface HoldOptions {
-        time?: number,
-        timeEnd?: number,
-        track?: number
+        time?: number;
+        timeEnd?: number;
+        track?: number;
     }
 
     interface ScenecontrolOptions {
-        time?: number,
-        type?: string,
-        param1?: number,
-        param2?: number
+        time?: number;
+        type?: string;
+        param1?: number;
+        param2?: number;
     }
 
     interface TapOptions {
-        time?: number,
-        track?: number
+        time?: number;
+        track?: number;
     }
 
     interface TimingOptions {
-        time?: number,
-        bpm?: number,
-        beats?: number
+        time?: number;
+        bpm?: number;
+        beats?: number;
     }
 
     interface EasingFunction {
-        (percent: number): number
+        (percent: number): number;
     }
 }

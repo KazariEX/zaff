@@ -1,15 +1,5 @@
 import { text2Aff } from "./ast";
-import {
-    Arc,
-    Camera,
-    Flick,
-    Hold,
-    Note,
-    SceneControl,
-    Tap,
-    Timing,
-    TimingGroup
-} from "./note";
+import { Arc, Camera, Flick, Hold, type Note, SceneControl, Tap, Timing, TimingGroup } from "./note";
 
 export class Aff {
     audioOffset: number;
@@ -27,13 +17,12 @@ export class Aff {
 
     // 迭代器
     [Symbol.iterator]() {
-        const that = this;
-        let index: number = 0;
+        let index = 0;
         return {
-            next() {
+            next: () => {
                 return {
-                    value: that[index++],
-                    done: index > that.length
+                    value: this[index++],
+                    done: index > this.length
                 };
             }
         };
@@ -49,7 +38,7 @@ export class Aff {
     removeTimingGroup(index: number) {
         // 无时间组
         if (this.length === 0) {
-            return void(0);
+            return void 0;
         }
         // 负索引处理
         index %= this.length;
@@ -81,7 +70,7 @@ export class Aff {
     // 谱面排序
     sort() {
         [...this].forEach((tg) => {
-            tg.sort((a: Note, b: Note) => a.time - b.time);
+            tg.sort((a, b) => a.time - b.time);
         });
         return this;
     }
@@ -106,7 +95,7 @@ export class Aff {
         aff.push("-");
 
         // 谱面内容
-        [...this].forEach((tg: TimingGroup, index: number) => {
+        [...this].forEach((tg, index) => {
             aff.push(tg.toString(index !== 0));
         });
 
@@ -247,7 +236,7 @@ export class Aff {
     }
 
     // 生成TimingGroup
-    static timinggroup(noteList: Note[] = [], options: string[] = []) {
-        return new TimingGroup(noteList, options);
+    static timinggroup(noteList: Note[] = [], attributes: string[] = []) {
+        return new TimingGroup(noteList, attributes);
     }
 }

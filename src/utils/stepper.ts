@@ -1,4 +1,4 @@
-import Timing from "../note/timing";
+import type Timing from "../note/timing";
 
 export class Stepper {
     time: number;
