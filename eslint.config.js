@@ -1,24 +1,19 @@
-import stylistic from "@stylistic/eslint-plugin";
-import typescriptParser from "@typescript-eslint/parser";
+import antfu from "@antfu/eslint-config";
 import zin from "@zinkawaii/eslint-config";
 
-export default [
-    {
-        files: [
-            "**/*.{js,ts}"
-        ],
-        languageOptions: {
-            parser: typescriptParser
-        },
-        plugins: {
-            stylistic: stylistic
-        },
-        rules: {
-            ...zin.recommended,
-            ...zin.standard,
-            ...zin.stylistic,
-            "no-dupe-class-members": "off",
-            "prefer-rest-params": "off"
-        }
+export default antfu({
+    jsonc: false,
+    markdown: false,
+    yaml: false,
+    stylistic: {
+        quotes: "double",
+        semi: true,
+        indent: 4
+    },
+    rules: {
+        ...zin.standard,
+        ...zin.recommended,
+        ...zin.stylistic,
+        ...zin.patch
     }
-];
+});
