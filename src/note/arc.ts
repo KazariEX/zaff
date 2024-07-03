@@ -184,6 +184,18 @@ class Arc extends Hold {
         return this;
     }
 
+    moveBy(t: number) {
+        super.moveBy(t);
+        this.arctap = this.arctap.map((val) => val + t);
+        return this;
+    }
+
+    moveTo(t: number) {
+        this.arctap = this.arctap.map((val) => val + t - this.time);
+        super.moveTo(t);
+        return this;
+    }
+
     speedAs(rate: number) {
         super.speedAs(rate);
         for (let i = 0; i < this.arctap.length; i++) {
