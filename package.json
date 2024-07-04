@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "1.1.2",
   "type": "module",
   "packageManager": "pnpm@9.4.0",
   "scripts": {
@@ -7,11 +8,13 @@
     "docs:build": "vitepress build docs",
     "dev": "pnpm -r dev",
     "lint": "eslint src/**/*.ts",
+    "release": "bumpp -r --no-push --commit \"release: v%s\"",
     "test": "vitest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.2",
     "@zinkawaii/eslint-config": "^0.1.1",
+    "bumpp": "^9.4.1",
     "eslint": "^9.6.0",
     "tsup": "^8.1.0",
     "vitepress": "1.2.3",
