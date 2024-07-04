@@ -43,7 +43,7 @@ class Visitor extends BaseVisitor {
             errors.push({
                 message: `Meta with key "${ctx.word[0].image}" is invalid`,
                 location: locationFromToken(ctx.word[0])
-            }), void (0)
+            }), void 0
         );
         const value = Number.parseFloat(ctx.value[0].image);
         return [key, value];
@@ -59,7 +59,7 @@ class Visitor extends BaseVisitor {
 
     note(ctx: ResolveCstNodes<"params" | "connects" | "children"> & ResolveITokens<"word">, errors: AFFError[]) {
         const kind = ctx.word?.[0].image || "tap";
-        const params = this.visit(ctx.params[0], errors);
+        const params = this.visit(ctx.params[0], errors) ?? [];
         const connects = this.visit(ctx.connects?.[0], errors);
         const children = this.visit(ctx.children?.[0], errors);
 

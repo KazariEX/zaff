@@ -93,13 +93,13 @@ export const factory = createFactory({
         return: (options) => new Timing(options)
     },
     timinggroup: {
-        paramsCount: 1,
+        paramsCount: [1],
         hasChildren: true,
         fieldTypes: {
             attrs: ["word"]
         },
         return: (options, connects, children = []) => {
-            const attrs = options.attrs.split("_");
+            const attrs = options.attrs?.split("_") ?? [];
             return new TimingGroup(children, attrs);
         }
     }

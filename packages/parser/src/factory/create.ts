@@ -12,7 +12,7 @@ type Factory = Record<string, (
 ) => Note | TimingGroup | null>;
 
 type FactoryOptions = Record<string, {
-    paramsCount: number;
+    paramsCount: number | [number];
     connectKinds?: string[];
     hasChildren?: boolean;
     fieldTypes: Record<string, string[]>;
@@ -35,13 +35,12 @@ export function createFactory(options: FactoryOptions) {
             return options && setting.return(options, connects, children);
         };
     }
-
     return factory;
 }
 
 // 检测参数数量
-function checkParamsCount(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"params">, params: IToken[], count: number) {
-    return (count !== void (0) && params.length !== count) ? (
+function checkParamsCount(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"params">, params: IToken[], count: number | [number]) {
+    return (Array.isArray(count) ? params.length > count[0] : params.length !== count) ? (
         errors.push({
             message: `Note with type "${kind}" should have ${count} field(s) instead of ${params.length} field(s)`,
             location: ctx.params[0].location!
@@ -83,11 +82,13 @@ function checkChildren(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"c
 function detectParams(errors: AFFError[], kind: string, params: IToken[], fieldTypes: Record<string, string[]>) {
     const options: Record<string, any> = {};
     const entries = Object.entries(fieldTypes);
-    for (let i = 0; i < entries.length; i++) {
+    const length = Math.min(entries.length, params.length);
+
+    for (let i = 0; i < length; i++) {
         const [field, typeNames] = entries[i];
         const param = params[i];
-
         const tokenType = param.tokenType;
+
         if (typeNames.includes(tokenType.name)) {
             options[field] = transforParamValue(tokenType.name, param.image);
         }

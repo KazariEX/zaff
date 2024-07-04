@@ -50,4 +50,20 @@ describe("parseInline", () => {
         const note = parseInline(text);
         expect(note.toString()).toBe(text);
     });
+
+    it("timinggroup:empty", () => {
+        const text = "timinggroup(){\n  \n};";
+        const note = parseInline(text);
+        expect(note.toString(true)).toBe(text);
+    });
+
+    it("timinggroup", () => {
+        const text = `timinggroup(noinput_anglex233){
+  timing(200,120.00,4.00);
+  (200,1);
+  hold(200,400,1);
+};`;
+        const note = parseInline(text);
+        expect(note.toString(true)).toBe(text);
+    });
 });
