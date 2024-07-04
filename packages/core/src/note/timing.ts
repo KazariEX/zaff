@@ -14,6 +14,10 @@ export class Timing extends Note {
         this.beats = beats;
     }
 
+    get kind() {
+        return "timing";
+    }
+
     clone({
         time = this.time,
         bpm = this.bpm,

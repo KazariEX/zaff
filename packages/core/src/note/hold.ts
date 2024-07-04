@@ -13,6 +13,10 @@ export class Hold extends Tap {
         this.track = track;
     }
 
+    get kind() {
+        return "hold";
+    }
+
     clone({
         time = this.time,
         timeEnd = this.timeEnd,

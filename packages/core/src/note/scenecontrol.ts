@@ -17,6 +17,10 @@ export class SceneControl extends Note {
         this.param2 = param2;
     }
 
+    get kind() {
+        return "scenecontrol";
+    }
+
     clone({
         time = this.time,
         type = this.type,

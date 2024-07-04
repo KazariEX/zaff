@@ -1,6 +1,10 @@
 import { Note } from "./note";
 
 export class Arctap extends Note {
+    get kind() {
+        return "arctap";
+    }
+
     clone({
         time = this.time
     }: ArctapOptions = {}) {

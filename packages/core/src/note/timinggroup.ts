@@ -18,7 +18,7 @@ export class TimingGroup extends Array<Note> {
     }
 
     get kind() {
-        return this.constructor.name.toLowerCase();
+        return "timinggroup";
     }
 
     mirror() {

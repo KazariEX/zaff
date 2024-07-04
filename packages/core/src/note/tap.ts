@@ -11,6 +11,10 @@ export class Tap extends Note {
         this.track = track;
     }
 
+    get kind() {
+        return "tap";
+    }
+
     clone({
         time = this.time,
         track = this.track

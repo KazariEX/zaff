@@ -38,6 +38,10 @@ export class Arc extends Hold {
         this.arctap = arctap;
     }
 
+    get kind() {
+        return "arc";
+    }
+
     at(t: number, { cx, cy }: {
         cx?: EasingFunction;
         cy?: EasingFunction;

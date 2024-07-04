@@ -32,6 +32,10 @@ export class Camera extends Note {
         this.duration = duration;
     }
 
+    get kind() {
+        return "camera";
+    }
+
     clone({
         time = this.time,
         x = this.x,

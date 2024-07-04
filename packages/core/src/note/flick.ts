@@ -20,6 +20,10 @@ export class Flick extends Note {
         this.vy = vy;
     }
 
+    get kind() {
+        return "flick";
+    }
+
     clone({
         time = this.time,
         x = this.x,

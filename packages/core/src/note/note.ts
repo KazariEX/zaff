@@ -26,10 +26,7 @@ export abstract class Note {
         return this;
     }
 
-    get kind() {
-        return this.constructor.name.toLowerCase();
-    }
-
+    abstract get kind(): string;
     abstract clone(options?: NoteOptions): Note;
     abstract toString(): string;
 }
