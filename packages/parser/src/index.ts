@@ -5,7 +5,7 @@ import { parser } from "./parser";
 import { locationFromToken } from "./utils";
 import { visitor } from "./visitor";
 
-export function parse(text: string): Aff {
+export function parseAff(text: string): Aff {
     const errors: AFFError[] = [];
     const lexingResult = lexer.tokenize(text);
 
@@ -37,7 +37,7 @@ export function parse(text: string): Aff {
     return aff;
 }
 
-export function parseInline<T extends Note | TimingGroup>(text: string): T {
+export function parseNote<T extends Note | TimingGroup>(text: string): T {
     const errors: AFFError[] = [];
     const lexingResult = lexer.tokenize(text, "body");
 
