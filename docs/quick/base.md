@@ -28,7 +28,7 @@ const tg = Aff.timinggroup([
 ]);
 
 aff.addTimingGroup(tg);
-const str = aff.stringify();
+const str = aff.toString();
 console.log(str);
 ```
 
@@ -47,10 +47,12 @@ arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(50
 
 ## 从文件读取
 
-Aff 上挂载了 `parse()` 和 `stringify()` 两个方法，分别用于从字符串中解析谱面或生成字符串：
+ZAff 导出了 `parseAff()` 和 `parseNote()` 两个方法，分别用于从字符串中解析整张谱面或单个 Note：
 
 ```ts
-const aff = Aff.parse(`
+import { parseAff, parseNote } from "zaff";
+
+const aff = parseAff(`
 AudioOffset:0
 -
 timing(0,128.00,4.00);
@@ -59,27 +61,23 @@ hold(0,250,4);
 arc(250,500,0.00,1.00,s,1.00,1.00,0,none,true)[arctap(250),arctap(375),arctap(500)];
 `);
 
-const str = aff.stringify();
+const note = parseNote<Tap>("(233,1);");
 ```
 
-如果是 Node.js 环境，则可以从文件中读取或导出：
+然后，你可以使用 `toString()` 方法将 Aff 或 Note 对象转换为字符串。
+
+如果是 Node.js 等服务端环境，则可以从文件中读取或导出：
 
 ```ts
-import * as fs from "fs";
+import { readFile } from "node:fs/promise";
 
-const file = fs.readFileSync("2.aff");
-const aff = Aff.parse(file.toString());
+const file = await readFile("2.aff");
+const aff = parseAff(file.toString());
 
 /* 一些对谱面的操作 */
 
-const str = aff.stringify();
+const str = aff.toString();
 fs.writeFileSync("3.aff", str);
-```
-
-此外，Aff 上还挂载了 ``parseInline()`` 方法，用于解析单个 Note 语句：
-
-```ts
-const note = Aff.parseInline<Tap>("(233,1);");
 ```
 
 ## 元素类（Note）
