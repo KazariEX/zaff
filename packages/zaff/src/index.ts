@@ -1,5 +1,5 @@
-import { Aff } from "@zaff/core";
+import { Aff } from "@zaffjs/core";
 
 export default Aff;
-export * from "@zaff/core";
-export * from "@zaff/parser";
+export * from "@zaffjs/core";
+export * from "@zaffjs/parser";

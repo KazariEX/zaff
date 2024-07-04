@@ -40,7 +40,7 @@ importers:
 
   packages/parser:
     dependencies:
-      '@zaff/core':
+      '@zaffjs/core':
         specifier: workspace:*
         version: link:../core
       chevrotain:
@@ -49,10 +49,10 @@ importers:
 
   packages/zaff:
     dependencies:
-      '@zaff/core':
+      '@zaffjs/core':
         specifier: workspace:*
         version: link:../core
-      '@zaff/parser':
+      '@zaffjs/parser':
         specifier: workspace:*
         version: link:../parser
 

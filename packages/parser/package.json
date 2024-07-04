@@ -1,5 +1,5 @@
 {
-  "name": "@zaff/parser",
+  "name": "@zaffjs/parser",
   "version": "1.2.0",
   "description": "",
   "author": "KazariEX",
@@ -25,7 +25,7 @@
     "dev": "tsup-node --watch"
   },
   "dependencies": {
-    "@zaff/core": "workspace:*",
+    "@zaffjs/core": "workspace:*",
     "chevrotain": "^11.0.3"
   }
 }

@@ -1,4 +1,4 @@
-import { Arc, Arctap, Camera, Flick, Hold, SceneControl, Tap, Timing, TimingGroup } from "@zaff/core";
+import { Arc, Arctap, Camera, Flick, Hold, SceneControl, Tap, Timing, TimingGroup } from "@zaffjs/core";
 import { createFactory } from "./create";
 
 // 处理与生成物件

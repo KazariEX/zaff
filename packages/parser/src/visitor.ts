@@ -1,4 +1,4 @@
-import { Aff, type Note, TimingGroup } from "@zaff/core";
+import { Aff, type Note, TimingGroup } from "@zaffjs/core";
 import type { AFFError, ResolveCstNodes, ResolveITokens } from "./types";
 import { factory } from "./factory";
 import { BaseVisitor } from "./parser";
