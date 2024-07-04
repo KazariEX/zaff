@@ -10,10 +10,8 @@
   "author": "KazariEX",
   "repository": "KazariEX/zaff",
   "files": [
-    "./dist",
-    "./types",
+    "dist",
     "LICENSE",
-    "package.json",
     "README.md"
   ],
   "exports": {
