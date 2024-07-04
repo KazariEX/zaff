@@ -1,14 +1,6 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "target": "ESNext"
-  },
+  "extends": "./tsconfig.base.json",
   "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "packages/*/src"
+, "packages/parser/ast"  ]
 }

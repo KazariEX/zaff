@@ -1,51 +1,20 @@
 {
-  "name": "zaff",
-  "version": "1.1.2",
-  "description": "ES module for processing arcaea format file",
-  "keywords": [
-    "arcaea",
-    "aff"
-  ],
-  "license": "MIT",
-  "author": "KazariEX",
-  "repository": "KazariEX/zaff",
+  "private": true,
   "type": "module",
-  "types": "types/index.d.ts",
-  "files": [
-    "./dist",
-    "./types",
-    "LICENSE",
-    "package.json",
-    "README.md"
-  ],
-  "exports": {
-    ".": {
-      "default": "./dist/zaff.js",
-      "import": "./dist/zaff.js",
-      "require": "./dist/zaff.cjs",
-      "types": "./types/index.d.ts"
-    }
-  },
   "packageManager": "pnpm@9.4.0",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "build": "vite build -w",
+    "dev": "pnpm -r dev",
     "lint": "eslint src/**/*.ts",
     "test": "vitest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.2",
-    "@stylistic/eslint-plugin": "^2.3.0",
-    "@typescript-eslint/parser": "^7.15.0",
     "@zinkawaii/eslint-config": "^0.1.1",
     "eslint": "^9.6.0",
-    "vite": "^5.3.3",
-    "vite-plugin-dts": "^3.9.1",
+    "tsup": "^8.1.0",
     "vitepress": "1.2.3",
     "vitest": "^1.6.0"
-  },
-  "dependencies": {
-    "chevrotain": "^11.0.3"
   }
 }
