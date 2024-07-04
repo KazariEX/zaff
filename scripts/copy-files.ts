@@ -1,13 +1,17 @@
 import { copyFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { basename, resolve as nodeResolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+const _filename = fileURLToPath(import.meta.url);
+const resolve = (...paths: string[]) => nodeResolve(_filename, "..", ...paths);
+
 const destinations = [
-    ["../LICENSE", "../packages/zaff/LICENSE"],
-    ["../README.md", "../packages/zaff/README.md"]
+    ["../LICENSE", "../packages/core"],
+    ["../LICENSE", "../packages/parser"],
+    ["../LICENSE", "../packages/zaff"],
+    ["../README.md", "../packages/zaff"]
 ];
 
-const _filename = fileURLToPath(import.meta.url);
 for (const [src, dest] of destinations) {
-    await copyFile(resolve(_filename, "..", src), resolve(_filename, "..", dest));
+    await copyFile(resolve(src), resolve(dest, basename(src)));
 }
