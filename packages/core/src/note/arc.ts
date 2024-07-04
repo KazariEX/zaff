@@ -1,4 +1,5 @@
 import { getComplexCurveByEasing } from "../utils/easing";
+import type { ArcOptions, EasingFunction, EasingType } from "../types";
 import { Hold } from "./hold";
 import { TimingGroup } from "./timinggroup";
 

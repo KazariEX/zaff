@@ -1,4 +1,5 @@
 import type { Timing } from "../note";
+import type { TimingOptions } from "../types";
 
 export class Stepper {
     time: number;

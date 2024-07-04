@@ -1,3 +1,4 @@
+import type { FlickOptions } from "../types";
 import { Note } from "./note";
 
 export class Flick extends Note {

@@ -1,3 +1,4 @@
+import type { ArctapOptions } from "../types";
 import { Note } from "./note";
 
 export class Arctap extends Note {

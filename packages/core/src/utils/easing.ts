@@ -1,3 +1,5 @@
+import type { EasingFunction, EasingType } from "../types";
+
 function linear(percent: number) {
     return percent;
 }

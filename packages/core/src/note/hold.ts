@@ -1,3 +1,4 @@
+import type { HoldOptions } from "../types";
 import { Tap } from "./tap";
 
 export class Hold extends Tap {

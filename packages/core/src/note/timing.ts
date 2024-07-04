@@ -1,3 +1,4 @@
+import type { TimingOptions } from "../types";
 import { Note } from "./note";
 
 export class Timing extends Note {

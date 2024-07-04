@@ -1,3 +1,5 @@
+import type { NoteOptions } from "../types";
+
 export abstract class Note {
     time: number;
 

@@ -1,3 +1,4 @@
+import type { CameraOptions, EasingType } from "../types";
 import { Note } from "./note";
 
 export class Camera extends Note {

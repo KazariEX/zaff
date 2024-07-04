@@ -1,3 +1,4 @@
+import type { TapOptions } from "../types";
 import { Note } from "./note";
 
 export class Tap extends Note {

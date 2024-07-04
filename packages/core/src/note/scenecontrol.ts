@@ -1,3 +1,4 @@
+import type { ScenecontrolOptions } from "../types";
 import { Note } from "./note";
 
 export class SceneControl extends Note {

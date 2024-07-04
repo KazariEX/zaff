@@ -1,4 +1,14 @@
 import { Arc, Camera, Flick, Hold, type Note, SceneControl, Tap, Timing, TimingGroup } from "./note";
+import type {
+    ArcOptions,
+    CameraOptions,
+    EasingType,
+    FlickOptions,
+    HoldOptions,
+    ScenecontrolOptions,
+    TapOptions,
+    TimingOptions
+} from "./types";
 
 export class Aff {
     audioOffset: number;
