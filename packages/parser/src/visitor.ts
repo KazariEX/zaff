@@ -1,4 +1,4 @@
-import { Aff, type Note, TimingGroup } from "@zaffjs/core";
+import { Aff, Note, TimingGroup } from "@zaffjs/core";
 import type { AFFError, ResolveCstNodes, ResolveITokens } from "./types";
 import { factory } from "./factory";
 import { BaseVisitor } from "./parser";
@@ -20,8 +20,8 @@ class Visitor extends BaseVisitor {
             this.visit(ctx.body[0], errors) as (Note | TimingGroup)[]
         ).filter(Boolean);
 
-        const tg0 = new TimingGroup(notes.filter((note): note is Note => note.kind !== "timinggroup"));
-        const tgs = notes.filter((note): note is TimingGroup => note.kind === "timinggroup");
+        const tg0 = new TimingGroup(notes.filter((note) => note instanceof Note));
+        const tgs = notes.filter((note) => note instanceof TimingGroup);
         for (const tg of [tg0, ...tgs]) {
             aff.addTimingGroup(tg);
         }
