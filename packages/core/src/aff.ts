@@ -10,6 +10,7 @@ import type {
     TimingOptions
 } from "./types";
 
+/* eslint-disable no-dupe-class-members */
 export class Aff {
     audioOffset: number;
     density: number;
@@ -113,13 +114,13 @@ export class Aff {
     // 生成Arc
     static arc(options: ArcOptions): Arc;
     static arc(time: number, timeEnd: number, x1: number, x2: number, easing: EasingType, y1: number, y2: number, color: number, hitsound: string, skyline: boolean, arctap?: number[]): Arc;
-    static arc(timeOrOptions: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: number, hitsound?: string, skyline?: boolean, arctap?: number[]) {
-        if (typeof arguments[0] === "object") {
-            return new Arc(timeOrOptions);
+    static arc(arg0: any, timeEnd?: number, x1?: number, x2?: number, easing?: EasingType, y1?: number, y2?: number, color?: number, hitsound?: string, skyline?: boolean, arctap?: number[]) {
+        if (typeof arg0 === "object") {
+            return new Arc(arg0);
         }
         else {
             return new Arc({
-                time: timeOrOptions,
+                time: arg0,
                 timeEnd,
                 x1,
                 x2,
@@ -137,13 +138,13 @@ export class Aff {
     // 生成Camera
     static camera(options: CameraOptions): Camera;
     static camera(time: number, x: number, y: number, z: number, xoyAngle: number, yozAngle: number, xozAngle: number, easing: EasingType, duration: number): Camera;
-    static camera(timeOrOptions: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: EasingType, duration?: number) {
-        if (typeof arguments[0] === "object") {
-            return new Camera(timeOrOptions);
+    static camera(arg0: any, x?: number, y?: number, z?: number, xoyAngle?: number, yozAngle?: number, xozAngle?: number, easing?: EasingType, duration?: number) {
+        if (typeof arg0 === "object") {
+            return new Camera(arg0);
         }
         else {
             return new Camera({
-                time: timeOrOptions,
+                time: arg0,
                 x,
                 y,
                 z,
@@ -159,13 +160,13 @@ export class Aff {
     // 生成Flick
     static flick(options: FlickOptions): Flick;
     static flick(time: number, x: number, y: number, vx: number, vy: number): Flick;
-    static flick(timeOrOptions: any, x?: number, y?: number, vx?: number, vy?: number) {
-        if (typeof arguments[0] === "object") {
-            return new Flick(timeOrOptions);
+    static flick(arg0: any, x?: number, y?: number, vx?: number, vy?: number) {
+        if (typeof arg0 === "object") {
+            return new Flick(arg0);
         }
         else {
             return new Flick({
-                time: timeOrOptions,
+                time: arg0,
                 x,
                 y,
                 vx,
@@ -177,13 +178,13 @@ export class Aff {
     // 生成Hold
     static hold(options: HoldOptions): Hold;
     static hold(time: number, timeEnd: number, track: number): Hold;
-    static hold(timeOrOptions: any, timeEnd?: number, track?: number) {
-        if (typeof arguments[0] === "object") {
-            return new Hold(timeOrOptions);
+    static hold(arg0: any, timeEnd?: number, track?: number) {
+        if (typeof arg0 === "object") {
+            return new Hold(arg0);
         }
         else {
             return new Hold({
-                time: timeOrOptions,
+                time: arg0,
                 timeEnd,
                 track
             });
@@ -193,13 +194,13 @@ export class Aff {
     // 生成Scenecontrol
     static scenecontrol(options: ScenecontrolOptions): SceneControl;
     static scenecontrol(time: number, type: string, param1: number, param2: number): SceneControl;
-    static scenecontrol(timeOrOptions: any, type?: string, param1?: number, param2?: number) {
-        if (typeof arguments[0] === "object") {
-            return new SceneControl(timeOrOptions);
+    static scenecontrol(arg0: any, type?: string, param1?: number, param2?: number) {
+        if (typeof arg0 === "object") {
+            return new SceneControl(arg0);
         }
         else {
             return new SceneControl({
-                time: timeOrOptions,
+                time: arg0,
                 type,
                 param1,
                 param2
@@ -210,13 +211,13 @@ export class Aff {
     // 生成Tap
     static tap(options: TapOptions): Tap;
     static tap(time: number, track: number): Tap;
-    static tap(timeOrOptions: any, track?: number) {
-        if (typeof arguments[0] === "object") {
-            return new Tap(timeOrOptions);
+    static tap(arg0: any, track?: number) {
+        if (typeof arg0 === "object") {
+            return new Tap(arg0);
         }
         else {
             return new Tap({
-                time: timeOrOptions,
+                time: arg0,
                 track
             });
         }
@@ -225,13 +226,13 @@ export class Aff {
     // 生成Timing
     static timing(options: TimingOptions): Timing;
     static timing(time: number, bpm: number, beats: number): Timing;
-    static timing(timeOrOptions: any, bpm?: number, beats?: number) {
-        if (typeof arguments[0] === "object") {
-            return new Timing(timeOrOptions);
+    static timing(arg0: any, bpm?: number, beats?: number) {
+        if (typeof arg0 === "object") {
+            return new Timing(arg0);
         }
         else {
             return new Timing({
-                time: timeOrOptions,
+                time: arg0,
                 bpm,
                 beats
             });
