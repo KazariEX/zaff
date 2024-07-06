@@ -41,10 +41,8 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         density = 1
     } = options;
 
-    // 获取范围内 Note 并按时间排序
-    const notes = tg
-        .filter((note) => note.time >= from && note.time <= to)
-        .sort((a, b) => a.time - b.time);
+    // 获取范围内 Note
+    const notes = tg.filter((note) => note.time >= from && note.time <= to);
 
     // 合并用于判断是否相连的 Arc
     const resolvedConnects = [
@@ -52,7 +50,8 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         ...notes.filter(Arc.is)
     ];
 
-    const timings = notes.filter(Timing.is);
+    // 获取所有 Timing 并按时间排序
+    const timings = tg.filter(Timing.is).sort((a, b) => a.time - b.time);
     if (!timings.length) {
         throw new Error(`Note with type "timinggroup" should at least have one "timing" note`);
     }
@@ -83,24 +82,19 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
             }
 
             // 获取当前时间片
-            while (hold.time > chunks[holdChunkIdx + 1]?.[0]) {
+            while (hold.time >= chunks[holdChunkIdx + 1]?.[0]) {
                 holdChunkIdx++;
             }
             const [, chunk] = chunks[holdChunkIdx];
 
-            // 持续时长小于时间片时，Hold 被对半分为两个判定块，仅第一块计入物量
-            if (duration < chunk) {
+            // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
+            if (duration < 2 * chunk) {
                 return res + 1;
             }
 
-            // 按照时间片对 Hold 切分为一个个判定块，最后一个判定块不计入物量
-            const piece = Math.floor(duration / chunk);
-
-            // 范围结束时间小于 Hold 结束时间时，所截取的判定块数目向上取整
-            const cuttedPiece = Math.ceil((to - hold.time) / chunk);
-
-            // 两者较小值即为有效物量
-            return res + Math.min(piece, cuttedPiece);
+            // 按照时间片将 Arc 切分为一个个判定块，第一个和最后一个判定块不计入物量
+            const piece = Math.floor(Math.min(to - hold.time, duration) / chunk);
+            return res + piece - 1;
         }, 0);
 
     let arcChunkIdx = 0;
@@ -119,13 +113,13 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
             }
 
             // 获取当前时间片
-            while (arc.time > chunks[arcChunkIdx + 1]?.[0]) {
+            while (arc.time >= chunks[arcChunkIdx + 1]?.[0]) {
                 arcChunkIdx++;
             }
             const [, chunk] = chunks[arcChunkIdx];
 
-            // 持续时长小于时间片时，Arc 被对半分为两个判定块，仅第一块计入物量
-            if (duration < chunk) {
+            // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
+            if (duration < 2 * chunk) {
                 return res + 1;
             }
 
@@ -137,14 +131,9 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
                 && Math.abs(note.timeEnd - arc.time) <= 5
             ));
 
-            // 按照时间片对 Arc 切分为一个个判定块，最后一个判定块是否计入物量取决于该 Arc 是否被连接
-            const piece = Math[isConnected ? "ceil" : "floor"](duration / chunk);
-
-            // 范围结束时间小于 Arc 结束时间时，所截取的判定块数目向上取整
-            const cuttedPiece = Math.ceil((to - arc.time) / chunk);
-
-            // 两者较小值即为有效物量
-            return res + Math.min(piece, cuttedPiece);
+            // 按照时间片将 Arc 切分为一个个判定块，第一个判定块是否计入物量取决于该 Arc 是否被连接
+            const piece = Math.floor(Math.min(to - arc.time, duration) / chunk);
+            return res + piece - (!isConnected ? 1 : 0);
         }, 0);
 
     return counts.tap + counts.flick + counts.hold + counts.arc + counts.arctap;
