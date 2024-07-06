@@ -39,8 +39,10 @@ export class Aff {
     }
 
     // 添加时间组
-    addTimingGroup(tg: TimingGroup) {
-        this[this.length++] = tg;
+    addTimingGroup(...tgs: TimingGroup[]) {
+        for (const tg of tgs) {
+            this[this.length++] = tg;
+        }
         return this;
     }
 
@@ -50,6 +52,7 @@ export class Aff {
         if (this.length === 0) {
             return void 0;
         }
+
         // 负索引处理
         index %= this.length;
         if (index < 0) index += this.length;
@@ -60,6 +63,7 @@ export class Aff {
         for (let i = index; i < this.length; i++) {
             this[i] = this[i + 1];
         }
+
         // 尾删
         delete this[this.length];
         return tg;
