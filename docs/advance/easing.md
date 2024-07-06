@@ -70,13 +70,13 @@ console.log(cy === Easing.cos); // true
 
 `Arc.cut()` 方法还可传入一个配置对象，属性如下：
 
-| 属性  | 类型           | 说明               |
-| ----- | -------------- | ------------------ |
-| start | number         | 起始时间           |
-| end   | number         | 结束时间           |
-| ender | boolean        | 是否生成两端的音弧 |
-| cx    | EasingFunction | x 轴缓动曲线       |
-| cy    | EasingFunction | y 轴缓动曲线       |
+| 属性  | 类型             | 描述                               |
+| ----- | ---------------- | ---------------------------------- |
+| start | `number`         | 起始时间                           |
+| end   | `number`         | 结束时间                           |
+| ender | `boolean`        | 是否生成两端的音弧（默认 `false`） |
+| cx    | `EasingFunction` | x 轴缓动曲线                       |
+| cy    | `EasingFunction` | y 轴缓动曲线                       |
 
 ```ts
 const arc = Aff.arc(0, 2333, 0.00, 1.00, "s", 0.00, 1.00, 0, "none", false);
