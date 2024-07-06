@@ -20,6 +20,7 @@ export const factory = createFactory({
         },
         return: (options, connects = []) => {
             options.arctap = connects.map((note) => note.time);
+            options.skyline = options.skyline === "true";
             return new Arc(options);
         }
     },
