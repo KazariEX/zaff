@@ -224,8 +224,7 @@ aff.density = 2;
 
 const tg0 = Aff.timinggroup();
 const tg1 = Aff.timinggroup();
-aff.addTimingGroup(tg0);
-aff.addTimingGroup(tg1);
+aff.addTimingGroup(tg0, tg1);
 // aff[0] = tg0
 // aff[1] = tg1
 // aff.length = 2

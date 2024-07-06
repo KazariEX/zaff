@@ -4,4 +4,4 @@ title: 简介
 
 # {{ $frontmatter.title }}
 
-欢迎使用ZAff。
+欢迎使用 ZAff。

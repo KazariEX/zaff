@@ -43,6 +43,10 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     {
+                        text: "物量",
+                        link: "/advance/counter"
+                    },
+                    {
                         text: "缓动",
                         link: "/advance/easing"
                     },
