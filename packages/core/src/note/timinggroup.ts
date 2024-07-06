@@ -17,10 +17,6 @@ export class TimingGroup extends Array<Note> {
         this.attributes = attributes;
     }
 
-    get kind() {
-        return "timinggroup";
-    }
-
     mirror() {
         this.forEach((note) => note.mirror());
         return this;
@@ -51,5 +47,9 @@ export class TimingGroup extends Array<Note> {
         else {
             return inner.join("\n");
         }
+    }
+
+    get kind() {
+        return "timinggroup";
     }
 }

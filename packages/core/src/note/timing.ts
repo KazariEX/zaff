@@ -15,10 +15,6 @@ export class Timing extends Note {
         this.beats = beats;
     }
 
-    get kind() {
-        return "timing";
-    }
-
     clone({
         time = this.time,
         bpm = this.bpm,
@@ -45,5 +41,13 @@ export class Timing extends Note {
         },${
             this.beats.toFixed(2)
         });`;
+    }
+
+    get kind() {
+        return "timing";
+    }
+
+    static is(note: Note): note is Timing {
+        return note.kind === "timing";
     }
 }

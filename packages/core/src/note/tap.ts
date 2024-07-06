@@ -12,10 +12,6 @@ export class Tap extends Note {
         this.track = track;
     }
 
-    get kind() {
-        return "tap";
-    }
-
     clone({
         time = this.time,
         track = this.track
@@ -42,5 +38,13 @@ export class Tap extends Note {
         },${
             this.track
         });`;
+    }
+
+    get kind() {
+        return "tap";
+    }
+
+    static is(note: Note): note is Tap {
+        return note.kind === "tap";
     }
 }

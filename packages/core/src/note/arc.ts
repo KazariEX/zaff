@@ -1,6 +1,7 @@
 import { getComplexCurveByEasing } from "../utils/easing";
 import type { ArcOptions, EasingFunction, EasingType } from "../types";
 import { Hold } from "./hold";
+import type { Note } from "./note";
 import { TimingGroup } from "./timinggroup";
 
 export class Arc extends Hold {
@@ -37,10 +38,6 @@ export class Arc extends Hold {
         this.hitsound = hitsound;
         this.skyline = skyline;
         this.arctap = arctap;
-    }
-
-    get kind() {
-        return "arc";
     }
 
     at(t: number, { cx, cy }: {
@@ -242,5 +239,13 @@ export class Arc extends Hold {
         })${
             arctap
         };`;
+    }
+
+    get kind() {
+        return "arc";
+    }
+
+    static is(note: Note): note is Arc {
+        return note.kind === "arc";
     }
 }

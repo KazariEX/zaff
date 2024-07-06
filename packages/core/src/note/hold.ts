@@ -1,4 +1,5 @@
 import type { HoldOptions } from "../types";
+import type { Note } from "./note";
 import { Tap } from "./tap";
 
 export class Hold extends Tap {
@@ -12,10 +13,6 @@ export class Hold extends Tap {
         super({ time });
         this.timeEnd = timeEnd;
         this.track = track;
-    }
-
-    get kind() {
-        return "hold";
     }
 
     clone({
@@ -60,5 +57,13 @@ export class Hold extends Tap {
         },${
             this.track
         });`;
+    }
+
+    get kind() {
+        return "hold";
+    }
+
+    static is(note: Note): note is Hold {
+        return note.kind === "hold";
     }
 }

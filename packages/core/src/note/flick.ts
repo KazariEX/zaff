@@ -21,10 +21,6 @@ export class Flick extends Note {
         this.vy = vy;
     }
 
-    get kind() {
-        return "flick";
-    }
-
     clone({
         time = this.time,
         x = this.x,
@@ -59,5 +55,13 @@ export class Flick extends Note {
         },${
             this.vy.toFixed(2)
         });`;
+    }
+
+    get kind() {
+        return "flick";
+    }
+
+    static is(note: Note): note is Flick {
+        return note.kind === "flick";
     }
 }

@@ -33,10 +33,6 @@ export class Camera extends Note {
         this.duration = duration;
     }
 
-    get kind() {
-        return "camera";
-    }
-
     clone({
         time = this.time,
         x = this.x,
@@ -88,5 +84,13 @@ export class Camera extends Note {
         },${
             Math.floor(this.duration)
         });`;
+    }
+
+    get kind() {
+        return "camera";
+    }
+
+    static is(note: Note): note is Camera {
+        return note.kind === "camera";
     }
 }

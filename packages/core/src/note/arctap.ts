@@ -2,10 +2,6 @@ import type { ArctapOptions } from "../types";
 import { Note } from "./note";
 
 export class Arctap extends Note {
-    get kind() {
-        return "arctap";
-    }
-
     clone({
         time = this.time
     }: ArctapOptions = {}) {
@@ -18,5 +14,13 @@ export class Arctap extends Note {
         return `arctap(${
             Math.floor(this.time)
         });`;
+    }
+
+    get kind() {
+        return "arctap";
+    }
+
+    static is(note: Note): note is Arctap {
+        return note.kind === "arctap";
     }
 }
