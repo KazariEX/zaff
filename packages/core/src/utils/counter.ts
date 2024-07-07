@@ -41,8 +41,10 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         density = 1
     } = options;
 
-    // 获取范围内 Note
-    const notes = tg.filter((note) => note.time >= from && note.time <= to);
+    // 获取范围内 Note 并按时间排序
+    const notes = tg
+        .filter((note) => ((note as Hold).timeEnd ?? note.time) >= from && note.time <= to)
+        .sort((a, b) => a.time - b.time);
 
     // 合并用于判断是否相连的 Arc
     const resolvedConnects = [
@@ -50,8 +52,8 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         ...notes.filter(Arc.is)
     ];
 
-    // 获取所有 Timing 并按时间排序
-    const timings = tg.filter(Timing.is).sort((a, b) => a.time - b.time);
+    // 获取所有 Timing
+    const timings = tg.filter(Timing.is);
     if (!timings.length) {
         throw new Error(`Note with type "timinggroup" should at least have one "timing" note`);
     }
@@ -64,6 +66,14 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         return res;
     }, [] as [number, number][]);
 
+    const createChunkGetter = () => {
+        let idx = 0;
+        return (time: number) => {
+            while (time >= chunks[idx + 1]?.[0]) idx++;
+            return chunks[idx][1];
+        };
+    };
+
     const counts = {
         tap: notes.filter(Tap.is).length,
         flick: notes.filter(Flick.is).length,
@@ -72,69 +82,53 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         arctap: 0
     };
 
-    let holdChunkIdx = 0;
+    const getHoldChunk = createChunkGetter();
     counts.hold += notes
         .filter(Hold.is)
         .reduce((res, hold) => {
-            const { duration } = hold;
-            if (duration <= 0) {
-                return res;
-            }
-
-            // 获取当前时间片
-            while (hold.time >= chunks[holdChunkIdx + 1]?.[0]) {
-                holdChunkIdx++;
-            }
-            const [, chunk] = chunks[holdChunkIdx];
-
-            // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
-            if (duration < 2 * chunk) {
-                return res + 1;
-            }
-
-            // 按照时间片将 Arc 切分为一个个判定块，第一个和最后一个判定块不计入物量
-            const piece = Math.floor(Math.min(to - hold.time, duration) / chunk);
-            return res + piece - 1;
+            const chunk = getHoldChunk(hold.time);
+            return res + countHoldLike(hold, from, to, chunk, resolvedConnects);
         }, 0);
 
-    let arcChunkIdx = 0;
+    const getArcChunk = createChunkGetter();
     counts.arc += notes
         .filter(Arc.is)
+        .filter((arc) => !arc.skyline)
         .reduce((res, arc) => {
-            const { duration, skyline } = arc;
-            if (duration <= 0) {
-                return res;
-            }
+            const chunk = getArcChunk(arc.time);
+            return res + countHoldLike(arc, from, to, chunk, resolvedConnects);
+        }, 0);
 
-            // Arc 为黑线时，仅计入其 ArcTap 的物量
-            if (skyline) {
-                counts.arctap += arc.arctap.filter((time) => time >= from && time <= to).length;
-                return res;
-            }
-
-            // 获取当前时间片
-            while (arc.time >= chunks[arcChunkIdx + 1]?.[0]) {
-                arcChunkIdx++;
-            }
-            const [, chunk] = chunks[arcChunkIdx];
-
-            // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
-            if (duration < 2 * chunk) {
-                return res + 1;
-            }
-
-            // 是否存在与其首尾相连的 Arc
-            const isConnected = !!resolvedConnects.find((note) => (
-                !note.skyline
-                && note.y2 === arc.y1
-                && Math.abs(note.x2 - arc.x1) <= 0.1
-                && Math.abs(note.timeEnd - arc.time) <= 5
-            ));
-
-            // 按照时间片将 Arc 切分为一个个判定块，第一个判定块是否计入物量取决于该 Arc 是否被连接
-            const piece = Math.floor(Math.min(to - arc.time, duration) / chunk);
-            return res + piece - (!isConnected ? 1 : 0);
+    counts.arctap += tg
+        .filter(Arc.is)
+        .filter((arc) => arc.skyline)
+        .reduce((res, arc) => {
+            return res + arc.arctap.filter((time) => time >= from && time <= to).length;
         }, 0);
 
     return counts.tap + counts.flick + counts.hold + counts.arc + counts.arctap;
+}
+
+function countHoldLike(note: Hold | Arc, from: number, to: number, chunk: number, connects: Arc[]) {
+    const { duration } = note;
+    if (duration <= 0) {
+        return 0;
+    }
+
+    // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
+    if (duration < 2 * chunk) {
+        return 1;
+    }
+
+    // 是否为被首尾相连的 Arc Note
+    const isConnected = Arc.is(note) && !!connects.find((n) => (
+        !n.skyline
+        && n.y2 === note.y1
+        && Math.abs(n.x2 - note.x1) <= 0.1
+        && Math.abs(n.timeEnd - note.time) <= 5
+    ));
+
+    // 按照时间片将 Note 切分为一个个判定块，第一个判定块是否计入物量取决于该 Note 是否被连接
+    const piece = Math.floor(Math.min(to - note.time, duration) / chunk);
+    return piece - (!isConnected ? 1 : 0);
 }
