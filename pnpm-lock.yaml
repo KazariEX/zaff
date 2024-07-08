@@ -47,6 +47,12 @@ importers:
         specifier: ^11.0.3
         version: 11.0.3
 
+  packages/utils:
+    dependencies:
+      '@zaffjs/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/zaff:
     dependencies:
       '@zaffjs/core':
@@ -55,6 +61,9 @@ importers:
       '@zaffjs/parser':
         specifier: workspace:*
         version: link:../parser
+      '@zaffjs/utils':
+        specifier: workspace:*
+        version: link:../utils
 
 packages:
 

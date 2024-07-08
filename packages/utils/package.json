@@ -1,18 +1,12 @@
 {
-  "name": "zaff",
+  "name": "@zaffjs/utils",
   "version": "1.2.3",
-  "description": "ES module for processing arcaea format file",
-  "keywords": [
-    "arcaea",
-    "aff"
-  ],
-  "license": "MIT",
+  "description": "",
   "author": "KazariEX",
   "repository": "KazariEX/zaff",
+  "license": "MIT",
   "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
+    "dist"
   ],
   "exports": {
     ".": {
@@ -31,8 +25,6 @@
     "dev": "tsup-node --watch"
   },
   "dependencies": {
-    "@zaffjs/core": "workspace:*",
-    "@zaffjs/parser": "workspace:*",
-    "@zaffjs/utils": "workspace:*"
+    "@zaffjs/core": "workspace:*"
   }
 }

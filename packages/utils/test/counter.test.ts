@@ -1,6 +1,9 @@
+import { resolve } from "node:path";
+import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
-import { countAff, countTimingGroup } from "../src/utils/counter";
-import { Aff } from "../src/aff";
+import { Aff } from "@zaffjs/core";
+import { parseAff } from "@zaffjs/parser";
+import { countAff, countTimingGroup } from "../src/counter";
 
 describe("countAff", () => {
     it("should connect Arcs across TimingGroups", () => {
@@ -22,6 +25,28 @@ describe("countAff", () => {
         aff.addTimingGroup(tg0, tg1);
 
         expect(countAff(aff)).toBe(3);
+    });
+});
+
+describe("countAff:examples", () => {
+    const readAff = async (path: string) => {
+        const file = await readFile(resolve(__dirname, path));
+        return parseAff(file.toString());
+    };
+
+    it("arcanaeden[beyond]", async () => {
+        const aff = await readAff("./examples/arcanaeden[beyond].aff");
+        expect(countAff(aff)).toBe(2134);
+    });
+
+    it("pentiment[beyond]", async () => {
+        const aff = await readAff("./examples/pentiment[beyond].aff");
+        expect(countAff(aff)).toBe(1741);
+    });
+
+    it("testify[beyond]", async () => {
+        const aff = await readAff("./examples/testify[beyond].aff");
+        expect(countAff(aff)).toBe(2221);
     });
 });
 

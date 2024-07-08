@@ -1,5 +1,4 @@
-import { Arc, Flick, Hold, Tap, Timing, type TimingGroup } from "../note";
-import type { Aff } from "../aff";
+import { type Aff, Arc, Flick, Hold, Tap, Timing, type TimingGroup } from "@zaffjs/core";
 
 export interface CountAffOptions {
     from?: number;

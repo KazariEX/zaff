@@ -20,7 +20,7 @@ export class Arc extends Hold {
         timeEnd = 0,
         x1 = 0,
         x2 = 0,
-        easing = "s" as EasingType,
+        easing = "s",
         y1 = 0,
         y2 = 0,
         color = 0,

@@ -1,5 +1,4 @@
-import type { Timing } from "../note";
-import type { TimingOptions } from "../types";
+import type { Timing, TimingOptions } from "@zaffjs/core";
 
 export class Stepper {
     time: number;
