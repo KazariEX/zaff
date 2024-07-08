@@ -1,3 +1,4 @@
+import type { NoteKind } from "../types";
 import type { Note } from "./note";
 
 export class TimingGroup extends Array<Note> {
@@ -49,7 +50,7 @@ export class TimingGroup extends Array<Note> {
         }
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "timinggroup";
     }
 }

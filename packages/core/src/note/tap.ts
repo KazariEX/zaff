@@ -1,4 +1,4 @@
-import type { TapOptions } from "../types";
+import type { NoteKind, TapOptions } from "../types";
 import { Note } from "./note";
 
 export class Tap extends Note {
@@ -40,7 +40,7 @@ export class Tap extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "tap";
     }
 

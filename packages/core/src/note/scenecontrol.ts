@@ -1,4 +1,4 @@
-import type { ScenecontrolOptions } from "../types";
+import type { NoteKind, ScenecontrolOptions } from "../types";
 import { Note } from "./note";
 
 export class SceneControl extends Note {
@@ -48,7 +48,7 @@ export class SceneControl extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "scenecontrol";
     }
 

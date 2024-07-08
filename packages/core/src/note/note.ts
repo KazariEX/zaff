@@ -1,4 +1,4 @@
-import type { NoteOptions } from "../types";
+import type { NoteKind, NoteOptions } from "../types";
 
 export abstract class Note {
     time: number;
@@ -28,7 +28,7 @@ export abstract class Note {
         return this;
     }
 
-    abstract get kind(): string;
+    abstract get kind(): NoteKind;
     abstract clone(options?: NoteOptions): Note;
     abstract toString(): string;
 }

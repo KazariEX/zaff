@@ -1,4 +1,4 @@
-import type { TimingOptions } from "../types";
+import type { NoteKind, TimingOptions } from "../types";
 import { Note } from "./note";
 
 export class Timing extends Note {
@@ -43,7 +43,7 @@ export class Timing extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "timing";
     }
 

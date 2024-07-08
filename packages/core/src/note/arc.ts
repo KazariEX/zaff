@@ -1,5 +1,5 @@
 import { getComplexCurveByEasing } from "../utils/easing";
-import type { ArcOptions, EasingFunction, EasingType } from "../types";
+import type { ArcOptions, EasingFunction, EasingType, NoteKind } from "../types";
 import { Hold } from "./hold";
 import type { Note } from "./note";
 import { TimingGroup } from "./timinggroup";
@@ -241,7 +241,7 @@ export class Arc extends Hold {
         };`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "arc";
     }
 

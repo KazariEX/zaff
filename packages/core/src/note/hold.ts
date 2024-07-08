@@ -1,4 +1,4 @@
-import type { HoldOptions } from "../types";
+import type { HoldOptions, NoteKind } from "../types";
 import type { Note } from "./note";
 import { Tap } from "./tap";
 
@@ -59,7 +59,7 @@ export class Hold extends Tap {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "hold";
     }
 

@@ -1,5 +1,5 @@
 import type { IToken } from "chevrotain";
-import type { Note, TimingGroup } from "@zaffjs/core";
+import type { Note, NoteKind, TimingGroup } from "@zaffjs/core";
 import { locationFromToken } from "../utils";
 import type { AFFError, ResolveCstNodes } from "../types";
 
@@ -13,7 +13,7 @@ type Factory = Record<string, (
 
 type FactoryOptions = Record<string, {
     paramsCount: number | [number];
-    connectKinds?: string[];
+    connectKinds?: NoteKind[];
     hasChildren?: boolean;
     fieldTypes: Record<string, string[]>;
     return: (options: any, connects?: Note[], children?: Note[]) => Note | TimingGroup;

@@ -1,3 +1,5 @@
+export type NoteKind = "arc" | "arctap" | "camera" | "flick" | "hold" | "scenecontrol" | "tap" | "timing" | "timinggroup";
+
 export type EasingType = "b" | "l" | "qi" | "qo" | "reset" | "s" | "si" | "so" | "sisi" | "siso" | "sosi" | "soso";
 
 export interface EasingFunction {

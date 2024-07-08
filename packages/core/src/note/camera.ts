@@ -1,4 +1,4 @@
-import type { CameraOptions, EasingType } from "../types";
+import type { CameraOptions, EasingType, NoteKind } from "../types";
 import { Note } from "./note";
 
 export class Camera extends Note {
@@ -86,7 +86,7 @@ export class Camera extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "camera";
     }
 

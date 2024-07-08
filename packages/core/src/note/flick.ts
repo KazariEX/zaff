@@ -1,4 +1,4 @@
-import type { FlickOptions } from "../types";
+import type { FlickOptions, NoteKind } from "../types";
 import { Note } from "./note";
 
 export class Flick extends Note {
@@ -57,7 +57,7 @@ export class Flick extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "flick";
     }
 

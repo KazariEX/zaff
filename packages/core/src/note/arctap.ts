@@ -1,4 +1,4 @@
-import type { ArctapOptions } from "../types";
+import type { ArctapOptions, NoteKind } from "../types";
 import { Note } from "./note";
 
 export class Arctap extends Note {
@@ -16,7 +16,7 @@ export class Arctap extends Note {
         });`;
     }
 
-    get kind() {
+    get kind(): NoteKind {
         return "arctap";
     }
 
