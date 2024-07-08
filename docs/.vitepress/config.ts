@@ -43,16 +43,22 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     {
-                        text: "物量",
-                        link: "/advance/counter"
-                    },
-                    {
                         text: "缓动",
                         link: "/advance/easing"
+                    }
+                ]
+            },
+            {
+                text: "实用工具",
+                collapsed: false,
+                items: [
+                    {
+                        text: "物量",
+                        link: "/utils/counter"
                     },
                     {
                         text: "步进",
-                        link: "/advance/stepper"
+                        link: "/utils/stepper"
                     }
                 ]
             }

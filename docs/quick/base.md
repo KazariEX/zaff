@@ -21,10 +21,10 @@ import { Aff } from "zaff";
 ```ts
 const aff = new Aff();
 const tg = Aff.timinggroup([
-    Aff.timing(0, 128.00, 4.00),
-    Aff.tap(0, 1),
-    Aff.hold(0, 250, 4),
-    Aff.arc(250, 500, 0.00, 1.00, "s", 1.00, 1.00, 0, "none", true, [250, 375, 500])
+  Aff.timing(0, 128.00, 4.00),
+  Aff.tap(0, 1),
+  Aff.hold(0, 250, 4),
+  Aff.arc(250, 500, 0.00, 1.00, "s", 1.00, 1.00, 0, "none", true, [250, 375, 500])
 ]);
 
 aff.addTimingGroup(tg);

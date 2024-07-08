@@ -10,8 +10,8 @@ title: 安装
 pnpm i zaff
 ```
 
-如果你不需要解析谱面字符串的功能，可以仅安装 ZAff 的核心库 `@zaffjs/core`：
+如果你不需要解析谱面字符串的功能，可以仅安装 ZAff 的核心库：
 
 ```bash
-pnpm i @zaffjs/core
+pnpm i @zaffjs/core @zaffjs/utils
 ```
