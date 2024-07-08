@@ -81,14 +81,6 @@ export class Aff {
         return this;
     }
 
-    // 谱面排序
-    sort() {
-        [...this].forEach((tg) => {
-            tg.sort((a, b) => a.time - b.time);
-        });
-        return this;
-    }
-
     // 谱面变速
     speedAs(rate: number) {
         [...this].forEach((tg) => {
