@@ -7,6 +7,6 @@
 </p>
 
 > [!IMPORTANT]
-> ZAff 正在实验性地开发中，由于历史原因，可能在非 Major 版本出现破坏性更新，望知悉。
+> ZAff 正在实验性地开发中，由于历史原因，可能在非 Major 版本出现破坏性变动，望知悉。
 
 这是一个处理 Arcaea 谱面文件的 Node.js 库，请阅读[文档](https://zaff.bikari.top)。
