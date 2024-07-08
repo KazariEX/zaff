@@ -4,7 +4,7 @@ title: 物量
 
 # {{ $frontmatter.title }}
 
-ZAff 导出了 `countAff` 和 `countTimingGroup` 两个方法，前者用于计算整个 Aff 的物量，后者用于计算单个 TimingGroup 的物量。按照以下方式导入：
+ZAff 导出了 `countAff()` 和 `countTimingGroup()` 两个方法，前者用于计算整个 Aff 的物量，后者用于计算单个 TimingGroup 的物量。按照以下方式导入：
 
 ```ts
 import { countAff, countTimingGroup } from "zaff";
@@ -28,7 +28,7 @@ const count = countAff(aff, {
 });
 ```
 
-对于 `countTimingGroup` 方法，它包含以下配置项：
+对于 `countTimingGroup()` 方法，它包含以下配置项：
 
 | 属性     | 类型     | 描述                                      |
 | -------- | -------- | ----------------------------------------- |

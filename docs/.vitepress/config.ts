@@ -53,6 +53,10 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     {
+                        text: "排序",
+                        link: "/utils/sorter"
+                    },
+                    {
                         text: "物量",
                         link: "/utils/counter"
                     },

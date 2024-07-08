@@ -19,7 +19,7 @@ import { Easing } from "zaff";
 * `sin()`，对应 `si`
 * `cos()`，对应 `so`
 
-这些函数表示取值范围和值域均为 [0, 1] 的曲线，在音弧中表示 timing 和 x / y 坐标的对应关系。考察 `Arc.at()` 方法的实现：
+这些函数表示取值范围和值域均为 [0, 1] 的曲线，在音弧中表示 timing 和 x / y 坐标的对应关系。考察 `Arc#at()` 方法的实现：
 
 ```ts
 function at(t: number) {
@@ -39,7 +39,7 @@ function at(t: number) {
 
 ## 自定义曲线
 
-游戏中的 `b` 类音弧，实际上是一条三阶贝塞尔曲线，它的两个控制点分别为 `(1/3, 0)` 和 `(2/3, 1)`。在 ZAff 中，`Easing` 对象提供了 `createBezier()` 方法，供我们创建自定义的缓动曲线。该方法默认起点和终点分别为 `(0, 0)` 和 `(1, 1)`，传入的四个参数分别为两个控制点的 xy 坐标。示例如下：
+游戏中的 `b` 类音弧，实际上是一条三阶贝塞尔曲线，它的两个控制点分别为 `(1/3, 0)` 和 `(2/3, 1)`。在 ZAff 中，`Easing` 对象提供了 `createBezier()` 方法，供我们创建自定义的缓动曲线。该方法默认起点和终点分别为 `(0, 0)` 和 `(1, 1)`，传入的四个参数分别为两个控制点的 x / y 坐标。示例如下：
 
 ```ts
 const curve = Easing.createBezier(0.11, 0.19, 0.23, 0.66);
@@ -51,7 +51,7 @@ console.log(curve(0.5));
 
 ## 缓动类型
 
-`Arc.easing` 是一个字符串类型的属性，它的可选值与游戏内音弧的缓动类型相同。在 Easing 对象上的 `getComplexCurveByEasing()` 方法用于从原生缓动类型获取对应的曲线，观察下面这个例子：
+`Arc#easing` 是一个字符串类型的属性，它的可选值与游戏内音弧的缓动类型相同。在 Easing 对象上的 `getComplexCurveByEasing()` 方法用于从原生缓动类型获取对应的曲线，观察下面这个例子：
 
 ```ts
 const [cx, cy] = Easing.getComplexCurveByEasing("siso");

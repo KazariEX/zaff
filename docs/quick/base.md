@@ -242,22 +242,21 @@ Aff 上有一些对内部 Note 进行批量操作的方法，如：
 ```ts
 aff.mirror();      // 谱面镜像
 aff.moveBy(500);   // 谱面偏移500ms
-aff.sort();        // 谱面排序（按时间）
 aff.speedAs(1.5);  // 谱面1.5倍变速
 ```
 
-以上方法实际上是通过遍历器调用了 Aff 中所有 TimingGroup 上的对应方法，使用扩展运算符对 Aff 进行展开，即可快速遍历其中的 TimingGroup：
+以上方法实际上是通过遍历器调用了 Aff 中所有 TimingGroup 上的对应方法，利用迭代器特性对 Aff 进行展开，即可快速遍历其中的 TimingGroup：
 
 ```ts
 // 按照时间倒序排列
-[...aff].forEach((tg) => {
+for (const tg of aff) {
   tg.sort((a, b) => b.time - a.time);
-});
+}
 ```
 
 ### TimingGroup
 
-TimingGroup 继承自 Array，可以使用所有原生 Array 对象的方法，像操作 js 原生数组那样向其中添加 Note：
+TimingGroup 继承自 Array，可以使用所有原生 Array 对象的方法，像操作 JS 原生数组那样向其中添加 Note：
 
 ```ts
 // 第二个参数可传入由特殊标识字符串构成的数组
