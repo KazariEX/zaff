@@ -76,8 +76,8 @@ export class Aff {
     }
 
     // 谱面偏移
-    offsetBy(offset: number) {
-        this.audioOffset += offset;
+    moveBy(t: number) {
+        [...this].forEach((tg) => tg.moveBy(t));
         return this;
     }
 

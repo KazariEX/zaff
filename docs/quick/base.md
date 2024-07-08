@@ -241,7 +241,7 @@ Aff 上有一些对内部 Note 进行批量操作的方法，如：
 
 ```ts
 aff.mirror();      // 谱面镜像
-aff.offsetBy(500); // 谱面偏移500ms
+aff.moveBy(500);   // 谱面偏移500ms
 aff.sort();        // 谱面排序（按时间）
 aff.speedAs(1.5);  // 谱面1.5倍变速
 ```
