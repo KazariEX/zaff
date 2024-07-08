@@ -74,4 +74,119 @@ describe("countTimingGroup", () => {
 
         expect(countTimingGroup(tg)).toBe(8);
     });
+
+    it("arc:from/to", () => {
+        const tg = Aff.timinggroup([
+            Aff.timing(0, 233.00, 4.00),
+            Aff.arc(0, 387, 0.00, 0.00, "s", 0.00, 0.00, 0, "none", false) // 2
+        ]);
+
+        /**
+         * ○----●----●----○-
+         * ^---^
+         */
+        expect(countTimingGroup(tg, {
+            to: 127
+        })).toBe(0);
+
+        /**
+         * ○----●----●----○-
+         * ^----^
+         */
+        expect(countTimingGroup(tg, {
+            to: 128
+        })).toBe(1);
+
+        /**
+         * ○----●----●----○-
+         *      ^----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 128,
+            to: 257
+        })).toBe(2);
+
+        /**
+         * ○----●----●----○-
+         *       ^--^
+         */
+        expect(countTimingGroup(tg, {
+            from: 129,
+            to: 256
+        })).toBe(0);
+
+        /**
+         * ○----●----●----○-
+         *           ^-----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 257
+        })).toBe(1);
+
+        /**
+         * ○----●----●----○-
+         *            ^----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 258
+        })).toBe(0);
+    });
+
+    it("arc:from/to with connects", () => {
+        const tg = Aff.timinggroup([
+            Aff.timing(0, 233.00, 4.00),
+            Aff.arc(0, 0, 0.50, 1.00, "s", 0.00, 0.00, 0, "none", false),  // 0
+            Aff.arc(0, 387, 1.00, 1.00, "s", 0.00, 0.00, 0, "none", false) // 2
+        ]);
+
+        /**
+         * ●----●----●----○-
+         * ^---^
+         */
+        expect(countTimingGroup(tg, {
+            to: 127
+        })).toBe(1);
+
+        /**
+         * ●----●----●----○-
+         * ^----^
+         */
+        expect(countTimingGroup(tg, {
+            to: 128
+        })).toBe(2);
+
+        /**
+         * ●----●----●----○-
+         *      ^----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 128,
+            to: 257
+        })).toBe(2);
+
+        /**
+         * ●----●----●----○-
+         *       ^--^
+         */
+        expect(countTimingGroup(tg, {
+            from: 129,
+            to: 256
+        })).toBe(0);
+
+        /**
+         * ●----●----●----○-
+         *           ^-----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 257
+        })).toBe(1);
+
+        /**
+         * ●----●----●----○-
+         *            ^----^
+         */
+        expect(countTimingGroup(tg, {
+            from: 258
+        })).toBe(0);
+    });
 });

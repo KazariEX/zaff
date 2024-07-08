@@ -41,7 +41,7 @@ export function countTimingGroup(tg: TimingGroup, options: CountTimingGroupOptio
         density = 1
     } = options;
 
-    // 获取范围内 Note 并按时间排序
+    // 获取区间内 Note 并按时间排序
     const notes = tg
         .filter((note) => ((note as Hold).timeEnd ?? note.time) >= from && note.time <= to)
         .sort((a, b) => a.time - b.time);
@@ -117,7 +117,7 @@ function countHoldLike(note: Hold | Arc, from: number, to: number, chunk: number
 
     // 持续时长小于 2 个时间片时，在第一个时间片头部计入 1 物量
     if (duration < 2 * chunk) {
-        return 1;
+        return from <= note.time ? 1 : 0;
     }
 
     // 是否为被首尾相连的 Arc Note
@@ -128,7 +128,15 @@ function countHoldLike(note: Hold | Arc, from: number, to: number, chunk: number
         && Math.abs(n.timeEnd - note.time) <= 5
     ));
 
-    // 按照时间片将 Note 切分为一个个判定块，第一个判定块是否计入物量取决于该 Note 是否被连接
-    const piece = Math.floor(Math.min(to - note.time, duration) / chunk);
-    return piece - (!isConnected ? 1 : 0);
+    // 收集判定点：第一个判定块是否计入物量取决于该 Note 是否被连接，最后一个判定块当且仅当等于时间片长度时计入物量
+    const points: number[] = [];
+    for (let i = isConnected ? 0 : chunk; i < duration; i += chunk) {
+        if (duration - i >= chunk) {
+            points.push(Math.floor(note.time + i));
+        }
+    }
+
+    const left = points.findLastIndex((time) => time < from) + 1;
+    const right = points.findIndex((time) => time > to);
+    return (right === -1 ? points.length : right) - left;
 }
