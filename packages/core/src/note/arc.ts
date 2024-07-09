@@ -1,4 +1,4 @@
-import { getComplexCurveByEasing } from "../utils/easing";
+import { getBiaxialCurves } from "../utils/easing";
 import type { ArcOptions, EasingFunction, EasingType, NoteKind } from "../types";
 import { Hold } from "./hold";
 import type { Note } from "./note";
@@ -45,7 +45,7 @@ export class Arc extends Hold {
         cy?: EasingFunction;
     } = {}) {
         const percent = (t - this.time) / (this.timeEnd - this.time);
-        const [_cx, _cy] = getComplexCurveByEasing(this.easing);
+        const [_cx, _cy] = getBiaxialCurves(this.easing);
         cx ??= _cx;
         cy ??= _cy;
 
@@ -117,7 +117,7 @@ export class Arc extends Hold {
             }
             else {
                 const st = (sample.timeEnd - sample.time) / count;
-                const [_cx, _cy] = getComplexCurveByEasing(this.easing);
+                const [_cx, _cy] = getBiaxialCurves(this.easing);
                 cx ??= _cx;
                 cy ??= _cy;
 

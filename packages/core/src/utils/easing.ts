@@ -71,43 +71,31 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
     }
 }
 
-function getCurveByEasing(e: EasingType): EasingFunction {
-    if (e === "b") {
-        return bezier;
-    }
-    else if (e === "si") {
-        return sin;
-    }
-    else if (e === "so") {
-        return cos;
-    }
-    else {
-        return linear;
+function getUniaxialCurve(type: EasingType): EasingFunction {
+    switch (type) {
+        case "b": return bezier;
+        case "si": return sin;
+        case "so": return cos;
+        default: return linear;
     }
 }
 
-function getComplexCurveByEasing(e: EasingType): [EasingFunction, EasingFunction] {
-    let cx = linear;
-    let cy = linear;
-
-    if (e === "b") {
-        cx = bezier;
+function getBiaxialCurves(type: EasingType): [EasingFunction, EasingFunction] {
+    if (type === "b") {
+        return [bezier, linear];
     }
-    else {
-        if (e === "si" || e === "sisi" || e === "siso") {
-            cx = sin;
-        }
-        else if (e === "so" || e === "sosi" || e === "soso") {
-            cx = cos;
-        }
 
-        if (e === "sisi" || e === "sosi") {
-            cy = sin;
-        }
-        else if (e === "siso" || e === "soso") {
-            cy = cos;
-        }
-    }
+    const cx = type.startsWith("si")
+        ? sin
+        : type.startsWith("so")
+            ? cos
+            : linear;
+
+    const cy = type.endsWith("si")
+        ? sin
+        : type.endsWith("so")
+            ? cos
+            : linear;
 
     return [cx, cy];
 }
@@ -118,6 +106,6 @@ export {
     cos,
     bezier,
     createBezier,
-    getCurveByEasing,
-    getComplexCurveByEasing
+    getUniaxialCurve,
+    getBiaxialCurves
 };
