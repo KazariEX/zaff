@@ -120,11 +120,11 @@ function countHoldLike(note: Hold | Arc, from: number, to: number, chunk: number
     }
 
     // 是否为被首尾相连的 Arc Note
-    const isConnected = Arc.is(note) && !!connects.find((n) => (
-        !n.skyline
+    const isConnected = Arc.is(note) && connects.some((n) => (
+        Math.abs(n.timeEnd - note.time) <= 5
+        && !n.skyline
         && n.y2 === note.y1
         && Math.abs(n.x2 - note.x1) <= 0.1
-        && Math.abs(n.timeEnd - note.time) <= 5
     ));
 
     // 收集判定点：第一个判定块是否计入物量取决于该 Note 是否被连接，最后一个判定块当且仅当等于时间片长度时计入物量
