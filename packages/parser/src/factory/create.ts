@@ -7,8 +7,8 @@ type Factory = Record<string, (
     errors: AFFError[],
     ctx: ResolveCstNodes<"children" | "connects" | "params">,
     params: IToken[],
-    connects: Note[],
-    children: Note[]
+    connects: Note[] | undefined,
+    children: Note[] | undefined
 ) => Note | TimingGroup | null>;
 
 type FactoryOptions = Record<string, {
@@ -27,7 +27,7 @@ export function createFactory(options: FactoryOptions) {
             if (
                 !checkParamsCount(errors, kind, ctx, params, setting.paramsCount) ||
                 !checkConnects(errors, kind, ctx, connects, setting.connectKinds ?? []) ||
-                !checkChildren(errors, kind, ctx, children, setting.hasChildren)
+                !checkChildren(errors, kind, ctx, children, setting.hasChildren ?? false)
             ) {
                 return null;
             }
@@ -49,27 +49,28 @@ function checkParamsCount(errors: AFFError[], kind: string, ctx: ResolveCstNodes
 }
 
 // 检测连携物件
-function checkConnects(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"connects">, connects: Note[], connectKinds: string[]) {
-    if (connects) {
-        if (connectKinds.length === 0) {
+function checkConnects(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"connects">, connects: Note[] | undefined, connectKinds: string[]) {
+    if (!connects) {
+        return true;
+    }
+    if (!connectKinds.length) {
+        return (
             errors.push({
                 message: `Note with type "${kind}" should not have connected note(s)`,
                 location: ctx.connects[0].location!
-            });
-            return false;
-        }
-        return connects.every((note) => ((!connectKinds.includes(note.kind)) ? (
-            errors.push({
-                message: `Note with type "${kind}" should not have connected note with type "${note.kind}"`,
-                location: ctx.connects[0].location!
             }), false
-        ) : true));
+        );
     }
-    else return true;
+    return connects.every((note) => ((!connectKinds.includes(note.kind)) ? (
+        errors.push({
+            message: `Note with type "${kind}" should not have connected note with type "${note.kind}"`,
+            location: ctx.connects[0].location!
+        }), false
+    ) : true));
 }
 
 // 检测子物件
-function checkChildren(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"children">, children: Note[], hasChildren = false) {
+function checkChildren(errors: AFFError[], kind: string, ctx: ResolveCstNodes<"children">, children: Note[] | undefined, hasChildren: boolean) {
     return (!hasChildren && children) ? (
         errors.push({
             message: `Note with type "${kind}" should not have child note(s)`,
@@ -87,14 +88,14 @@ function detectParams(errors: AFFError[], kind: string, params: IToken[], fieldT
     for (let i = 0; i < length; i++) {
         const [field, typeNames] = entries[i];
         const param = params[i];
-        const tokenType = param.tokenType;
+        const { name } = param.tokenType;
 
-        if (typeNames.includes(tokenType.name)) {
-            options[field] = transforParamValue(tokenType.name, param.image);
+        if (typeNames.includes(name)) {
+            options[field] = transforParamValue(name, param.image);
         }
         else {
             errors.push({
-                message: `The param in the "${field}" field of note with type "${kind}" should be "${typeNames}" instead of "${param.tokenType.name}"`,
+                message: `The param in the "${field}" field of note with type "${kind}" should be "${typeNames}" instead of "${name}"`,
                 location: locationFromToken(param)
             });
             return null;
