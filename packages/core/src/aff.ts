@@ -14,8 +14,7 @@ import type {
 export class Aff {
     audioOffset: number;
     density: number;
-    length: number = 0;
-    [key: number]: TimingGroup;
+    timingGroups: TimingGroup[];
 
     constructor({
         audioOffset = 0,
@@ -23,69 +22,44 @@ export class Aff {
     } = {}) {
         this.audioOffset = audioOffset;
         this.density = density;
+        this.timingGroups = [];
+    }
+
+    get length() {
+        return this.timingGroups.length;
     }
 
     // 迭代器
     [Symbol.iterator]() {
-        let index = 0;
-        return {
-            next: () => {
-                return {
-                    value: this[index++],
-                    done: index > this.length
-                };
-            }
-        };
+        return this.timingGroups[Symbol.iterator]();
     }
 
     // 添加时间组
     addTimingGroup(...tgs: TimingGroup[]) {
-        for (const tg of tgs) {
-            this[this.length++] = tg;
-        }
+        this.timingGroups.push(...tgs);
         return this;
     }
 
     // 删除时间组
     removeTimingGroup(index: number) {
-        // 无时间组
-        if (this.length === 0) {
-            return void 0;
-        }
-
-        // 负索引处理
-        index %= this.length;
-        if (index < 0) index += this.length;
-        this.length--;
-
-        // 左移
-        const tg = this[index];
-        for (let i = index; i < this.length; i++) {
-            this[i] = this[i + 1];
-        }
-
-        // 尾删
-        delete this[this.length];
-        return tg;
+        return this.timingGroups.splice(index, 1);
     }
 
     // 谱面镜像
     mirror() {
-        [...this].forEach((tg) => tg.mirror());
+        this.timingGroups.forEach((tg) => tg.mirror());
         return this;
     }
 
     // 谱面偏移
     moveBy(t: number) {
-        [...this].forEach((tg) => tg.moveBy(t));
+        this.timingGroups.forEach((tg) => tg.moveBy(t));
         return this;
     }
 
     // 谱面变速
     speedAs(rate: number) {
-        [...this].forEach((tg) => {
-            tg.speedAs(rate);
-        });
+        this.timingGroups.forEach((tg) => tg.speedAs(rate));
         return this;
     }
 
@@ -100,9 +74,7 @@ export class Aff {
         aff.push("-");
 
         // 谱面内容
-        [...this].forEach((tg, index) => {
-            aff.push(tg.toString(index !== 0));
-        });
+        aff.push(...this.timingGroups.map((tg, i) => tg.toString(i !== 0)));
 
         return aff.join("\n");
     }

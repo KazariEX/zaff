@@ -13,7 +13,7 @@ export interface CountTimingGroupOptions {
 }
 
 export function countAff(aff: Aff, options: CountAffOptions = {}) {
-    const tgs = [...aff];
+    const tgs = aff.timingGroups;
 
     return tgs.reduce((res, tg) => {
         const connects = tgs
