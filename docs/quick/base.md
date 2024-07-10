@@ -225,8 +225,6 @@ aff.density = 2;
 const tg0 = Aff.timinggroup();
 const tg1 = Aff.timinggroup();
 aff.addTimingGroup(tg0, tg1);
-// aff[0] = tg0
-// aff[1] = tg1
 // aff.length = 2
 
 while (aff.length) {
@@ -235,7 +233,7 @@ while (aff.length) {
 // aff.length = 0
 ```
 
-传入的第一个 TimingGroup 将作为 `.aff` 文件的顶层输出，即 `Aff[0]`。
+传入的第一个 TimingGroup 将作为 `.aff` 文件的顶层输出。
 
 Aff 上有一些对内部 Note 进行批量操作的方法，如：
 
@@ -245,7 +243,7 @@ aff.moveBy(500);   // 谱面偏移500ms
 aff.speedAs(1.5);  // 谱面1.5倍变速
 ```
 
-以上方法实际上是通过遍历器调用了 Aff 中所有 TimingGroup 上的对应方法，利用迭代器特性对 Aff 进行展开，即可快速遍历其中的 TimingGroup：
+以上操作实际上是通过循环调用了 Aff 中所有 TimingGroup 上的对应方法，利用迭代器特性对 Aff 进行展开，即可快速遍历其中的 TimingGroup：
 
 ```ts
 // 按照时间倒序排列
@@ -253,6 +251,8 @@ for (const tg of aff) {
   tg.sort((a, b) => b.time - a.time);
 }
 ```
+
+你也可以从 `Aff#timingGroups` 直接获取 TimingGroup 数组，然后进行更加精细的操作。
 
 ### TimingGroup
 
