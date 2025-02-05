@@ -1,9 +1,9 @@
 import type { Aff, Note, TimingGroup } from "@zaffjs/core";
-import type { AFFError } from "./types";
 import { lexer } from "./lexer";
 import { parser } from "./parser";
 import { locationFromToken } from "./utils";
 import { visitor } from "./visitor";
+import type { AFFError } from "./types";
 
 export const parseAff = createParser<Aff>("head", "aff");
 export const parseNote = createParser<Note | TimingGroup>("body", "item");

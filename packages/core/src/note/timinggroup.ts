@@ -33,7 +33,7 @@ export class TimingGroup extends Array<Note> {
         return this;
     }
 
-    toString(outer = false) {
+    override toString(outer = false) {
         const inner = this.map((note) => {
             return note.toString();
         });

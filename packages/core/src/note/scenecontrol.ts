@@ -1,5 +1,5 @@
-import type { NoteKind, ScenecontrolOptions } from "../types";
 import { Note } from "./note";
+import type { NoteKind, ScenecontrolOptions } from "../types";
 
 export class SceneControl extends Note {
     type: string;
@@ -32,7 +32,7 @@ export class SceneControl extends Note {
         });
     }
 
-    mirror() {
+    override mirror() {
         return this;
     }
 

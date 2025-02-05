@@ -1,5 +1,5 @@
-import type { ArctapOptions, NoteKind } from "../types";
 import { Note } from "./note";
+import type { ArctapOptions, NoteKind } from "../types";
 
 export class Arctap extends Note {
     clone({

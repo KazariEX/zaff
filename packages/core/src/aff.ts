@@ -10,7 +10,6 @@ import type {
     TimingOptions
 } from "./types";
 
-/* eslint-disable no-dupe-class-members */
 export class Aff {
     audioOffset: number;
     density: number;

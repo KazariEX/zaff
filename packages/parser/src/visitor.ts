@@ -1,8 +1,8 @@
 import { Aff, Note, TimingGroup } from "@zaffjs/core";
-import type { AFFError, ResolveCstNodes, ResolveITokens } from "./types";
 import { factory } from "./factory";
 import { BaseVisitor } from "./parser";
 import { locationFromToken } from "./utils";
+import type { AFFError, ResolveCstNodes, ResolveITokens } from "./types";
 
 class Visitor extends BaseVisitor {
     constructor() {

@@ -1,4 +1,4 @@
-import { Lexer, createToken } from "chevrotain";
+import { createToken, Lexer } from "chevrotain";
 
 const value = createToken({ name: "value", pattern: Lexer.NA });
 const float = createToken({ name: "float", pattern: /-?\d+\.\d+/, categories: value });

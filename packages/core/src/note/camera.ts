@@ -1,5 +1,5 @@
-import type { CameraOptions, EasingType, NoteKind } from "../types";
 import { Note } from "./note";
+import type { CameraOptions, EasingType, NoteKind } from "../types";
 
 export class Camera extends Note {
     x: number;
@@ -57,7 +57,7 @@ export class Camera extends Note {
         });
     }
 
-    mirror() {
+    override mirror() {
         this.x *= -1;
         this.xoyAngle *= -1;
         this.xozAngle *= -1;

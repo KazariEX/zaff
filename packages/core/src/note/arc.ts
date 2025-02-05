@@ -1,8 +1,8 @@
 import { getBiaxialCurves } from "../utils/easing";
-import type { ArcOptions, EasingFunction, EasingType, NoteKind } from "../types";
 import { Hold } from "./hold";
-import type { Note } from "./note";
 import { TimingGroup } from "./timinggroup";
+import type { ArcOptions, EasingFunction, EasingType, NoteKind } from "../types";
+import type { Note } from "./note";
 
 export class Arc extends Hold {
     x1: number;
@@ -55,7 +55,7 @@ export class Arc extends Hold {
         };
     }
 
-    clone({
+    override clone({
         time = this.time,
         timeEnd = this.timeEnd,
         x1 = this.x1,
@@ -178,7 +178,7 @@ export class Arc extends Hold {
         return tg;
     }
 
-    mirror() {
+    override mirror() {
         this.x1 = 1 - this.x1;
         this.x2 = 1 - this.x2;
         const { color } = this;
@@ -186,19 +186,19 @@ export class Arc extends Hold {
         return this;
     }
 
-    moveBy(t: number) {
+    override moveBy(t: number) {
         super.moveBy(t);
         this.arctap = this.arctap.map((val) => val + t);
         return this;
     }
 
-    moveTo(t: number) {
+    override moveTo(t: number) {
         this.arctap = this.arctap.map((val) => val + t - this.time);
         super.moveTo(t);
         return this;
     }
 
-    speedAs(rate: number) {
+    override speedAs(rate: number) {
         super.speedAs(rate);
         for (let i = 0; i < this.arctap.length; i++) {
             this.arctap[i] = Math.round(this.arctap[i] / rate);
@@ -206,7 +206,7 @@ export class Arc extends Hold {
         return this;
     }
 
-    toString() {
+    override toString() {
         let arctap = "";
         if (this.arctap?.length > 0) {
             arctap = `[${
@@ -241,11 +241,11 @@ export class Arc extends Hold {
         };`;
     }
 
-    get kind(): NoteKind {
+    override get kind(): NoteKind {
         return "arc";
     }
 
-    static is(note: Note): note is Arc {
+    static override is(note: Note): note is Arc {
         return note.kind === "arc";
     }
 }

@@ -1,5 +1,5 @@
-import type { IToken } from "chevrotain";
 import type { Note, NoteKind, TimingGroup } from "@zaffjs/core";
+import type { IToken } from "chevrotain";
 import { locationFromToken } from "../utils";
 import type { AFFError, ResolveCstNodes } from "../types";
 

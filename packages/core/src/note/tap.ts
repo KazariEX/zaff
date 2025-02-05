@@ -1,5 +1,5 @@
-import type { NoteKind, TapOptions } from "../types";
 import { Note } from "./note";
+import type { NoteKind, TapOptions } from "../types";
 
 export class Tap extends Note {
     track: number;
@@ -22,7 +22,7 @@ export class Tap extends Note {
         });
     }
 
-    mirror() {
+    override mirror() {
         if (this.track % 1 === 0) {
             this.track = 5 - this.track;
         }

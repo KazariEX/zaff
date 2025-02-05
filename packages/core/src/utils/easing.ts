@@ -1,21 +1,21 @@
 import type { EasingFunction, EasingType } from "../types";
 
-function linear(percent: number) {
+export function linear(percent: number) {
     return percent;
 }
 
-function sin(percent: number) {
+export function sin(percent: number) {
     return Math.sin(percent * Math.PI / 2);
 }
 
-function cos(percent: number) {
+export function cos(percent: number) {
     return 1 - Math.cos(percent * Math.PI / 2);
 }
 
 const bezier = createBezier(1 / 3, 0, 2 / 3, 1);
 
 // https://github.com/WebKit/webkit/blob/main/Source/WebCore/platform/graphics/UnitBezier.h
-function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFunction {
+export function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFunction {
     const cx = 3 * x1;
     const bx = 3 * (x2 - x1) - cx;
     const ax = 1 - cx - bx;
@@ -71,7 +71,7 @@ function createBezier(x1: number, y1: number, x2: number, y2: number): EasingFun
     }
 }
 
-function getUniaxialCurve(type: EasingType): EasingFunction {
+export function getUniaxialCurve(type: EasingType): EasingFunction {
     switch (type) {
         case "b": return bezier;
         case "si": return sin;
@@ -80,7 +80,7 @@ function getUniaxialCurve(type: EasingType): EasingFunction {
     }
 }
 
-function getBiaxialCurves(type: EasingType): [EasingFunction, EasingFunction] {
+export function getBiaxialCurves(type: EasingType): [EasingFunction, EasingFunction] {
     if (type === "b") {
         return [bezier, linear];
     }
@@ -99,13 +99,3 @@ function getBiaxialCurves(type: EasingType): [EasingFunction, EasingFunction] {
 
     return [cx, cy];
 }
-
-export {
-    linear,
-    sin,
-    cos,
-    bezier,
-    createBezier,
-    getUniaxialCurve,
-    getBiaxialCurves
-};

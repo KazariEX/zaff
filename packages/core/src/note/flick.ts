@@ -1,5 +1,5 @@
-import type { FlickOptions, NoteKind } from "../types";
 import { Note } from "./note";
+import type { FlickOptions, NoteKind } from "../types";
 
 export class Flick extends Note {
     x: number;
@@ -37,7 +37,7 @@ export class Flick extends Note {
         });
     }
 
-    mirror() {
+    override mirror() {
         this.x = 1 - this.x;
         this.vx = -this.vx;
         return this;

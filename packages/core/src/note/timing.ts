@@ -1,5 +1,5 @@
-import type { NoteKind, TimingOptions } from "../types";
 import { Note } from "./note";
+import type { NoteKind, TimingOptions } from "../types";
 
 export class Timing extends Note {
     bpm: number;
@@ -27,7 +27,7 @@ export class Timing extends Note {
         });
     }
 
-    speedAs(rate: number) {
+    override speedAs(rate: number) {
         super.speedAs(rate);
         this.bpm *= rate;
         return this;
