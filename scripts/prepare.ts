@@ -8,5 +8,8 @@ const destinations = [
 ];
 
 for (const [src, dest] of destinations) {
-    await link(resolve(src), resolve(dest, basename(src)));
+    try {
+        await link(resolve(src), resolve(dest, basename(src)));
+    }
+    catch {}
 }
