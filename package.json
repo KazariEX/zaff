@@ -19,7 +19,7 @@
     "@zinkawaii/eslint-config": "^0.1.10",
     "bumpp": "^10.0.1",
     "eslint": "^9.19.0",
-    "tsup": "^8.3.6",
+    "tsdown": "^0.8.1",
     "tsx": "^4.19.2",
     "vitepress": "1.6.3",
     "vitest": "^3.0.5"
