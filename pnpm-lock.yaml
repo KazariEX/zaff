@@ -17,6 +17,9 @@ importers:
       '@zinkawaii/eslint-config':
         specifier: ^0.1.10
         version: 0.1.10
+      '@zinkawaii/tsconfig':
+        specifier: ^0.0.1
+        version: 0.0.1
       bumpp:
         specifier: ^10.0.1
         version: 10.0.1
@@ -1448,6 +1451,9 @@ packages:
 
   '@zinkawaii/eslint-config@0.1.10':
     resolution: {integrity: sha512-5DCGM5cwbB4sV2FpR3vRne49eU6HByEDoAKpIcs1VRUQ9qx5wM3XPFWt/c+7E1GPSKiJLrnQ0dIJX/Zk8uqe9w==}
+
+  '@zinkawaii/tsconfig@0.0.1':
+    resolution: {integrity: sha512-uO40UtaaIMjc88J/NdKaF0O8mP3fm/jBhiCoMAHdCzSfincB4KJ5ddCf1yhzj8Inxl+MwjirXKAQ5e7QaLawGg==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -4295,6 +4301,8 @@ snapshots:
       - typescript
 
   '@zinkawaii/eslint-config@0.1.10': {}
+
+  '@zinkawaii/tsconfig@0.0.1': {}
 
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:

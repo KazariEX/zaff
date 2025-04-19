@@ -17,6 +17,7 @@
     "@antfu/eslint-config": "^4.1.1",
     "@types/node": "^22.13.1",
     "@zinkawaii/eslint-config": "^0.1.10",
+    "@zinkawaii/tsconfig": "^0.0.1",
     "bumpp": "^10.0.1",
     "eslint": "^9.19.0",
     "tsdown": "^0.8.1",
