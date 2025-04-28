@@ -24,8 +24,8 @@
     "dev": "tsdown -w"
   },
   "dependencies": {
-    "@zaffjs/core": "workspace:*",
-    "@zaffjs/parser": "workspace:*",
-    "@zaffjs/utils": "workspace:*"
+    "@zaffjs/core": "workspace:^",
+    "@zaffjs/parser": "workspace:^",
+    "@zaffjs/utils": "workspace:^"
   }
 }

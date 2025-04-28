@@ -1,2 +1,19 @@
 packages:
   - packages/*
+
+catalog:
+  "@antfu/eslint-config": ^4.12.0
+  "@types/node": ^22.15.3
+  "@zinkawaii/eslint-config": ^0.2.3
+  "@zinkawaii/scripts": ^0.0.2
+  "@zinkawaii/tsconfig": ^0.0.1
+  bumpp: ^10.1.0
+  chevrotain: ^11.0.3
+  eslint: ^9.25.1
+  tsdown: ^0.10.0
+  tsx: ^4.19.3
+  vitepress: 1.6.3
+  vitest: ^3.1.2
+
+onlyBuiltDependencies:
+  - rolldown

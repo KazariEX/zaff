@@ -21,6 +21,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@zaffjs/core": "workspace:*"
+    "@zaffjs/core": "workspace:^"
   }
 }

@@ -8,21 +8,22 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "prepack": "pnpm run build",
-    "prepare": "tsx scripts/prepare.ts",
-    "release": "bumpp -r --no-push --commit \"release: v%s\"",
+    "prepare": "zin link zaff",
+    "release": "bumpp -r --no-push -c \"release: v%s\"",
     "test": "vitest",
     "eslint": "eslint ."
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.1.1",
-    "@types/node": "^22.13.1",
-    "@zinkawaii/eslint-config": "^0.1.10",
-    "@zinkawaii/tsconfig": "^0.0.1",
-    "bumpp": "^10.0.1",
-    "eslint": "^9.19.0",
-    "tsdown": "^0.8.1",
-    "tsx": "^4.19.2",
-    "vitepress": "1.6.3",
-    "vitest": "^3.0.5"
+    "@antfu/eslint-config": "catalog:",
+    "@types/node": "catalog:",
+    "@zinkawaii/eslint-config": "catalog:",
+    "@zinkawaii/scripts": "catalog:",
+    "@zinkawaii/tsconfig": "catalog:",
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "vitepress": "catalog:",
+    "vitest": "catalog:"
   }
 }

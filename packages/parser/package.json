@@ -21,7 +21,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@zaffjs/core": "workspace:*",
-    "chevrotain": "^11.0.3"
+    "@zaffjs/core": "workspace:^",
+    "chevrotain": "catalog:"
   }
 }
